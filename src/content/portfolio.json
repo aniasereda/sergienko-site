@@ -1,0 +1,14 @@
+{
+  "beforeAfter": [
+    { "before": "/images/before-1.jpg", "after": "/images/after-1.jpg", "alt": "Before and after color correction" }
+  ],
+  "gallery": [
+    { "src": "/images/work-1.jpg", "alt": "Wedding photo" },
+    { "src": "/images/work-2.jpg", "alt": "Portrait" },
+    { "src": "/images/work-3.jpg", "alt": "Family photo" },
+    { "src": "/images/work-4.jpg", "alt": "Couple at sunset" },
+    { "src": "/images/work-5.jpg", "alt": "Personal photoshoot" },
+    { "src": "/images/work-6.jpg", "alt": "Wedding details" }
+  ],
+  "moreWorksUrl": "https://www.sergienko.space/portfolio"
+}

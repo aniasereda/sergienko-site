@@ -1,0 +1,24 @@
+---
+import site from '../content/site.json';
+import steps from '../content/steps.json';
+---
+<section class="section dark" id="process">
+  <div class="container">
+    <p class="eyebrow">How it works</p>
+    <h2>{site.processTitle}</h2>
+    <p class="lead">{site.processIntro}</p>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step">
+          <span class="step__n">{String(i + 1).padStart(2, '0')}</span>
+          <h4>{s.title}</h4>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="grid-2 mt">
+      <div class="box"><h4>Terms</h4><p>{site.terms}</p></div>
+      <div class="box"><h4>Important to know</h4><p>{site.important}</p></div>
+    </div>
+  </div>
+</section>

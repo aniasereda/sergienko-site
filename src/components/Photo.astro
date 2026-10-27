@@ -1,0 +1,9 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+const { src, alt = '', class: cls = '' } = Astro.props;
+const exists = src && fs.existsSync(path.join(process.cwd(), 'public', src));
+---
+{exists
+  ? <img src={src} alt={alt} class={cls} loading="lazy" draggable="false" />
+  : <div class={`ph ${cls}`} role="img" aria-label={alt}><span>{alt || 'Photo'}</span></div>}

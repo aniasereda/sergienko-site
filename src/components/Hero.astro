@@ -1,0 +1,30 @@
+---
+import site from '../content/site.json';
+import portfolio from '../content/portfolio.json';
+import Photo from './Photo.astro';
+const cols = [0, 1, 2].map((c) => portfolio.gallery.slice(c * 2, c * 2 + 2));
+---
+<section class="hero" id="top">
+  <div class="container hero__in">
+    <div class="hero__text">
+      <p class="eyebrow">{site.role}</p>
+      <h1>{site.name}</h1>
+      <p class="hero__tag">{site.tagline.join(' ')}</p>
+      <p class="hero__intro">{site.intro}</p>
+      <div class="btns">
+        <a class="btn" href="#price">See prices</a>
+        <a class="btn btn--ghost" href="#contact">Send photos</a>
+      </div>
+      <ul class="facts">
+        {site.facts.map((f) => <li>{f}</li>)}
+      </ul>
+    </div>
+    <div class="collage" aria-label="Selected works">
+      {cols.map((col) => (
+        <div class="collage__col">
+          {col.map((p) => <Photo src={p.src} alt={p.alt} class="collage__img" />)}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

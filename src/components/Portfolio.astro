@@ -1,0 +1,35 @@
+---
+import portfolio from '../content/portfolio.json';
+import Photo from './Photo.astro';
+---
+<section class="section" id="portfolio">
+  <div class="container">
+    <p class="eyebrow">Portfolio</p>
+    <h2>Selected works</h2>
+
+    {portfolio.beforeAfter.map((p) => (
+      <div class="ba" data-ba>
+        <Photo src={p.before} alt={`Before: ${p.alt}`} class="ba__img" />
+        <div class="ba__after"><Photo src={p.after} alt={`After: ${p.alt}`} class="ba__img" /></div>
+        <span class="ba__tag ba__tag--l">Before</span>
+        <span class="ba__tag ba__tag--r">After</span>
+        <div class="ba__line"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Before and after comparison" />
+      </div>
+    ))}
+
+    <div class="gallery">
+      {portfolio.gallery.map((p) => <Photo src={p.src} alt={p.alt} class="gallery__img" />)}
+    </div>
+    <p class="center"><a class="btn btn--ghost" href={portfolio.moreWorksUrl}>More works</a></p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((el) => {
+    const input = el.querySelector('input')!;
+    const update = () => el.style.setProperty('--pos', input.value + '%');
+    input.addEventListener('input', update);
+    update();
+  });
+</script>

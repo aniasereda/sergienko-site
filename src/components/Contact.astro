@@ -1,0 +1,49 @@
+---
+import site from '../content/site.json';
+---
+<section class="section dark" id="contact">
+  <div class="container grid-2 contact">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2>Send photos</h2>
+      <p class="lead">Tell me about your project and I will reply with a quote. The minimum order is {site.minPhotos} photos.</p>
+      {site.email && <p><a href={`mailto:${site.email}`}>{site.email}</a></p>}
+      <ul class="social">
+        {Object.entries(site.social).map(([name, url]) => (
+          <li><a href={url as string} target="_blank" rel="noopener">{name}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div class="card form-card">
+      <form id="contact-form">
+        <label>Name<input name="name" type="text" autocomplete="name" required /></label>
+        <label>Instagram or email<input name="contact" type="text" required /></label>
+        <label>I need
+          <select name="need">
+            <option>Color correction</option>
+            <option>Skin retouching</option>
+            <option>Package (color + skin)</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label>Number of photos<input name="count" type="number" min={site.minPhotos} placeholder={`Min. ${site.minPhotos}`} required /></label>
+        <label>Message<textarea name="message" rows="4"></textarea></label>
+        <p class="consent">By sending this form you agree to the processing of your data. <a href={site.privacyUrl}>Privacy policy</a>.</p>
+        <button class="btn" type="submit">Send</button>
+      </form>
+      <div class="thanks" id="thanks" hidden>
+        <h3>Thank you!</h3>
+        <p>I have received your message and will reply soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.hidden = true;
+    (document.getElementById('thanks') as HTMLElement).hidden = false;
+  });
+</script>
