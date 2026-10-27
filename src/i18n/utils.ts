@@ -14,8 +14,8 @@ import ukPortfolio from '../content/uk/portfolio.json';
 export type Lang = 'en' | 'uk';
 
 const data = {
-  en: { ui: enUi, site: enSite, prices: enPrices, steps: enSteps, faq: enFaq, portfolio: enPortfolio },
-  uk: { ui: ukUi, site: ukSite, prices: ukPrices, steps: ukSteps, faq: ukFaq, portfolio: ukPortfolio },
+  en: { ui: enUi, site: enSite, prices: enPrices, steps: enSteps.items, faq: enFaq.items, portfolio: enPortfolio },
+  uk: { ui: ukUi, site: ukSite, prices: ukPrices, steps: ukSteps.items, faq: ukFaq.items, portfolio: ukPortfolio },
 };
 
 export const paths: Record<Lang, string> = { en: '/', uk: '/uk/' };

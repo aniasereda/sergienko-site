@@ -1,0 +1,246 @@
+backend:
+  name: github
+  repo: aniasereda/sergienko-site
+  branch: main
+
+publish_mode: simple
+media_folder: public/images
+public_folder: /images
+
+
+collections:
+  - name: en
+    label: "English"
+    files:
+      - name: prices
+        label: "Prices"
+        format: json
+        file: src/content/en/prices.json
+        fields:
+          - label: "Color correction tiers"
+            name: color
+            widget: list
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "Price (e.g. $0.40)", name: price, widget: string }
+              - { label: "Short description", name: lead, widget: text }
+              - label: "Included"
+                name: included
+                widget: list
+                field: { label: "Item", name: item, widget: text }
+              - label: "Not included"
+                name: notIncluded
+                widget: list
+                field: { label: "Item", name: item, widget: text }
+          - label: "Skin retouching tiers"
+            name: skin
+            widget: list
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "Price (e.g. $3)", name: price, widget: string }
+              - { label: "Short description", name: lead, widget: text }
+              - label: "Included"
+                name: included
+                widget: list
+                field: { label: "Item", name: item, widget: text }
+          - { label: "Text in the “Packages” card", name: packageNote, widget: text }
+      - name: steps
+        label: "Steps (How it works)"
+        format: json
+        file: src/content/en/steps.json
+        fields:
+          - label: "Steps"
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Text", name: text, widget: text }
+      - name: faq
+        label: "FAQ"
+        format: json
+        file: src/content/en/faq.json
+        fields:
+          - label: "Questions"
+            name: items
+            widget: list
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Question", name: q, widget: string }
+              - { label: "Answer", name: a, widget: text }
+      - name: portfolio
+        label: "Portfolio images"
+        format: json
+        file: src/content/en/portfolio.json
+        fields:
+          - label: "Before / after pairs"
+            name: beforeAfter
+            widget: list
+            fields:
+              - { label: "Before photo", name: before, widget: image }
+              - { label: "After photo", name: after, widget: image }
+              - { label: "Description of the photo (for screen readers)", name: alt, widget: string, required: false }
+          - label: "Gallery photos"
+            name: gallery
+            widget: list
+            hint: "The first 6 photos are also used in the collage at the top of the page."
+            fields:
+              - { label: "Photo", name: src, widget: image }
+              - { label: "Description of the photo (for screen readers)", name: alt, widget: string }
+          - { label: "“More works” link", name: moreWorksUrl, widget: string }
+      - name: contacts
+        label: "Contacts and main texts"
+        format: json
+        file: src/content/en/site.json
+        fields:
+          - { label: "Name", name: name, widget: string }
+          - { label: "Role (small text above the name)", name: role, widget: string }
+          - label: "Tagline (three short phrases)"
+            name: tagline
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - { label: "Intro text under the tagline", name: intro, widget: text }
+          - label: "Social links"
+            name: social
+            widget: object
+            fields:
+              - { label: "Instagram", name: instagram, widget: string }
+              - { label: "Facebook", name: facebook, widget: string }
+              - { label: "LinkedIn", name: linkedin, widget: string }
+          - { label: "Email shown on the site (leave empty to hide)", name: email, widget: string, required: false }
+          - label: "Directions of work"
+            name: directions
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - label: "Services"
+            name: services
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - { label: "Minimum number of photos", name: minPhotos, widget: number, value_type: int, min: 1 }
+          - { label: "Terms", name: terms, widget: text }
+          - { label: "Important to know", name: important, widget: text }
+          - label: "What affects the final price"
+            name: priceFactors
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - { label: "Privacy policy link", name: privacyUrl, widget: string }
+  - name: uk
+    label: "Українська"
+    files:
+      - name: prices
+        label: "Prices"
+        format: json
+        file: src/content/uk/prices.json
+        fields:
+          - label: "Color correction tiers"
+            name: color
+            widget: list
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "Price (e.g. $0.40)", name: price, widget: string }
+              - { label: "Short description", name: lead, widget: text }
+              - label: "Included"
+                name: included
+                widget: list
+                field: { label: "Item", name: item, widget: text }
+              - label: "Not included"
+                name: notIncluded
+                widget: list
+                field: { label: "Item", name: item, widget: text }
+          - label: "Skin retouching tiers"
+            name: skin
+            widget: list
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "Price (e.g. $3)", name: price, widget: string }
+              - { label: "Short description", name: lead, widget: text }
+              - label: "Included"
+                name: included
+                widget: list
+                field: { label: "Item", name: item, widget: text }
+          - { label: "Text in the “Packages” card", name: packageNote, widget: text }
+      - name: steps
+        label: "Steps (How it works)"
+        format: json
+        file: src/content/uk/steps.json
+        fields:
+          - label: "Steps"
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Text", name: text, widget: text }
+      - name: faq
+        label: "FAQ"
+        format: json
+        file: src/content/uk/faq.json
+        fields:
+          - label: "Questions"
+            name: items
+            widget: list
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Question", name: q, widget: string }
+              - { label: "Answer", name: a, widget: text }
+      - name: portfolio
+        label: "Portfolio images"
+        format: json
+        file: src/content/uk/portfolio.json
+        fields:
+          - label: "Before / after pairs"
+            name: beforeAfter
+            widget: list
+            fields:
+              - { label: "Before photo", name: before, widget: image }
+              - { label: "After photo", name: after, widget: image }
+              - { label: "Description of the photo (for screen readers)", name: alt, widget: string, required: false }
+          - label: "Gallery photos"
+            name: gallery
+            widget: list
+            hint: "The first 6 photos are also used in the collage at the top of the page."
+            fields:
+              - { label: "Photo", name: src, widget: image }
+              - { label: "Description of the photo (for screen readers)", name: alt, widget: string }
+          - { label: "“More works” link", name: moreWorksUrl, widget: string }
+      - name: contacts
+        label: "Contacts and main texts"
+        format: json
+        file: src/content/uk/site.json
+        fields:
+          - { label: "Name", name: name, widget: string }
+          - { label: "Role (small text above the name)", name: role, widget: string }
+          - label: "Tagline (three short phrases)"
+            name: tagline
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - { label: "Intro text under the tagline", name: intro, widget: text }
+          - label: "Social links"
+            name: social
+            widget: object
+            fields:
+              - { label: "Instagram", name: instagram, widget: string }
+              - { label: "Facebook", name: facebook, widget: string }
+              - { label: "LinkedIn", name: linkedin, widget: string }
+          - { label: "Email shown on the site (leave empty to hide)", name: email, widget: string, required: false }
+          - label: "Directions of work"
+            name: directions
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - label: "Services"
+            name: services
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - { label: "Minimum number of photos", name: minPhotos, widget: number, value_type: int, min: 1 }
+          - { label: "Terms", name: terms, widget: text }
+          - { label: "Important to know", name: important, widget: text }
+          - label: "What affects the final price"
+            name: priceFactors
+            widget: list
+            field: { label: "Item", name: item, widget: text }
+          - { label: "Privacy policy link", name: privacyUrl, widget: string }
+          - { label: "Portfolio link (not used on the page)", name: moreWorksUrl, widget: string, required: false }
