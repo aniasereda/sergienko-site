@@ -12,11 +12,49 @@ const { site, ui } = getData(lang);
       <a href="#portfolio">{ui.nav.portfolio}</a>
       <a href="#faq">{ui.nav.faq}</a>
     </nav>
-    <div class="lang">
-      {(['en', 'uk'] as const).map((l) => (
-        <a href={paths[l]} lang={l} hreflang={l} aria-current={l === lang ? 'page' : undefined}>{ui.switcher[l]}</a>
-      ))}
+    <div class="lang" data-lang>
+      <button class="lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label={ui.switcher.label}>
+        <span>{ui.switcher[lang]}</span><i aria-hidden="true"></i>
+      </button>
+      <ul class="lang__menu" id="lang-menu" hidden>
+        {(['en', 'uk'] as const).map((l) => (
+          <li>
+            <a href={paths[l]} lang={l} hreflang={l} aria-current={l === lang ? 'true' : undefined}>
+              <span>{ui.switcher.names[l]}</span>
+              {l === lang && <b aria-hidden="true">✓</b>}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
     <a class="btn btn--sm" href="#contact">{ui.cta.sendPhotos}</a>
   </div>
 </header>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-lang]').forEach((root) => {
+    const btn = root.querySelector('button')!;
+    const menu = root.querySelector<HTMLElement>('.lang__menu')!;
+    const set = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+    };
+    btn.addEventListener('click', () => set(menu.hidden));
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target as Node)) set(false);
+    });
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        set(false);
+        btn.focus();
+      }
+    });
+    root.addEventListener('focusout', (e) => {
+      if (!root.contains((e as FocusEvent).relatedTarget as Node | null)) set(false);
+    });
+    // keep the current section when switching language
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => { a.hash = location.hash; })
+    );
+  });
+</script>

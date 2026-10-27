@@ -53,10 +53,16 @@ h4 { font-size: 28px; }
 .header__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
 .brand { font: 500 28px var(--serif); text-decoration: none; }
 .nav { display: flex; gap: 8px; margin-left: auto; }
-.lang { display: flex; gap: 4px; }
-.lang a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-decoration: none; border-radius: 999px; color: var(--muted); }
-.lang a:hover { color: var(--text); }
-.lang a[aria-current='page'] { background: var(--accent); color: var(--surface); font-weight: 600; }
+.lang { position: relative; }
+.lang__btn { display: inline-flex; align-items: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--text); font: 500 13px var(--sans); letter-spacing: .08em; cursor: pointer; }
+.lang__btn:hover { border-color: var(--accent); }
+.lang__btn i { width: 7px; height: 7px; margin-top: -3px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg); transition: transform .2s; }
+.lang__btn[aria-expanded='true'] i { transform: rotate(-135deg); margin-top: 3px; }
+.lang__menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 20; min-width: 160px; max-width: calc(100vw - 40px); margin: 0; padding: 6px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 24px rgba(43, 39, 32, .14); }
+.lang__menu a { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 0 12px; border-radius: 8px; font-size: 14px; text-decoration: none; }
+.lang__menu a:hover { background: var(--bg); }
+.lang__menu a[aria-current='true'] { font-weight: 600; }
+.lang__menu b { color: var(--accent); font-weight: 600; }
 .nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; text-decoration: none; font-size: 14px; }
 .nav a:hover { color: var(--accent); text-decoration: underline; }
 

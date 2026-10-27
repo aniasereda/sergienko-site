@@ -61,5 +61,5 @@
     }
   },
   "footer": { "copyright": "© Вікторія Сергієнко, професійна ретушерка" },
-  "switcher": { "en": "EN", "uk": "UK" }
+  "switcher": { "en": "EN", "uk": "UK", "label": "Мова", "names": { "en": "English", "uk": "Українська" } }
 }
