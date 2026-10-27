@@ -1,12 +1,16 @@
 ---
-import site from '../content/site.json';
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { site, ui } = getData(lang);
+const t = ui.contact;
+const f = t.form;
 ---
 <section class="section dark" id="contact">
   <div class="container grid-2 contact">
     <div>
-      <p class="eyebrow">Contact</p>
-      <h2>Send photos</h2>
-      <p class="lead">Tell me about your project and I will reply with a quote. The minimum order is {site.minPhotos} photos.</p>
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h2>{t.title}</h2>
+      <p class="lead">{t.text}</p>
       {site.email && <p><a href={`mailto:${site.email}`}>{site.email}</a></p>}
       <ul class="social">
         {Object.entries(site.social).map(([name, url]) => (
@@ -16,24 +20,21 @@ import site from '../content/site.json';
     </div>
     <div class="card form-card">
       <form id="contact-form">
-        <label>Name<input name="name" type="text" autocomplete="name" required /></label>
-        <label>Instagram or email<input name="contact" type="text" required /></label>
-        <label>I need
+        <label>{f.name}<input name="name" type="text" autocomplete="name" required /></label>
+        <label>{f.contact}<input name="contact" type="text" required /></label>
+        <label>{f.need}
           <select name="need">
-            <option>Color correction</option>
-            <option>Skin retouching</option>
-            <option>Package (color + skin)</option>
-            <option>Not sure yet</option>
+            {f.options.map((o) => <option>{o}</option>)}
           </select>
         </label>
-        <label>Number of photos<input name="count" type="number" min={site.minPhotos} placeholder={`Min. ${site.minPhotos}`} required /></label>
-        <label>Message<textarea name="message" rows="4"></textarea></label>
-        <p class="consent">By sending this form you agree to the processing of your data. <a href={site.privacyUrl}>Privacy policy</a>.</p>
-        <button class="btn" type="submit">Send</button>
+        <label>{f.count}<input name="count" type="number" min={site.minPhotos} required /></label>
+        <label>{f.message}<textarea name="message" rows="4"></textarea></label>
+        <p class="consent">{f.consent} <a href={site.privacyUrl}>{f.privacy}</a></p>
+        <button class="btn" type="submit">{ui.cta.send}</button>
       </form>
       <div class="thanks" id="thanks" hidden>
-        <h3>Thank you!</h3>
-        <p>I have received your message and will reply soon.</p>
+        <h3>{f.thanksTitle}</h3>
+        <p>{f.thanksText}</p>
       </div>
     </div>
   </div>

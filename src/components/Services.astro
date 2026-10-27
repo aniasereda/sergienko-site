@@ -1,16 +1,16 @@
 ---
-import site from '../content/site.json';
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { site, ui } = getData(lang);
 ---
 <section class="section" id="services">
   <div class="container grid-2">
     <div class="card">
-      <p class="eyebrow">Directions of my work</p>
-      <h3>Directions</h3>
+      <h3>{ui.labels.directions}</h3>
       <ul class="list">{site.directions.map((d) => <li>{d}</li>)}</ul>
     </div>
     <div class="card">
-      <p class="eyebrow">Services</p>
-      <h3>What I do</h3>
+      <h3>{ui.labels.services}</h3>
       <ul class="list">{site.services.map((s) => <li>{s}</li>)}</ul>
     </div>
   </div>

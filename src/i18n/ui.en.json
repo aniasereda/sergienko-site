@@ -1,0 +1,63 @@
+{
+  "lang": "en",
+  "meta": {
+    "title": "Victoria Sergienko — a professional retoucher",
+    "description": "Color correction and skin retouching for wedding, family and personal photoshoots. Clean color, consistent results, confidence in every series."
+  },
+  "nav": { "prices": "Prices", "process": "How it works", "portfolio": "Portfolio", "faq": "FAQ" },
+  "cta": {
+    "sendPhotos": "Send photos",
+    "seePrices": "See prices",
+    "moreWorks": "More works",
+    "send": "Send",
+    "sendForQuote": "Send photos for a quote"
+  },
+  "hero": { "facts": ["7+ years of experience", "Color 1–5 days", "Retouching 1–3 days"] },
+  "labels": { "directions": "Directions of my work", "services": "Services" },
+  "prices": {
+    "eyebrow": "Prices",
+    "title": "Clear prices per photo",
+    "intro": "I have an individual approach for each client, so the final cost is determined personally. The minimum order is 10 photos.",
+    "colorGroup": "Color correction",
+    "skinGroup": "Skin retouching",
+    "perPhoto": "/ photo",
+    "included": "Included",
+    "notIncluded": "Not included",
+    "factorsTitle": "What affects the final price",
+    "packagesTitle": "Packages: color + skin"
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "title": "Calm, clear and comfortable at every stage",
+    "intro": "I know how difficult it can be to trust your photographs to someone else. That is why my workflow is built to be simple and transparent.",
+    "terms": "Terms",
+    "important": "Important to know"
+  },
+  "portfolio": {
+    "eyebrow": "Portfolio",
+    "title": "See the difference",
+    "hint": "Drag the slider to compare the original and the result.",
+    "before": "Before",
+    "after": "After"
+  },
+  "faq": { "eyebrow": "FAQ", "title": "Questions from photographers" },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Leave your details and I will get back to you",
+    "text": "I will answer all your questions. Tell me what you need, how many photos and the deadline. For color I need RAW files, for skin retouching JPEG or TIFF. A reference of the desired result saves time.",
+    "form": {
+      "name": "Name",
+      "contact": "Instagram or email",
+      "need": "I need",
+      "options": ["Color correction", "Skin retouching", "Package: color + skin"],
+      "count": "Number of photos (min. 10)",
+      "message": "Message, deadline, link to photos",
+      "consent": "By clicking “Send” you agree to the processing of your personal data.",
+      "privacy": "Privacy policy",
+      "thanksTitle": "Thank you!",
+      "thanksText": "I will get back to you soon and answer all your questions."
+    }
+  },
+  "footer": { "copyright": "© Victoria Sergienko, a professional retoucher" },
+  "switcher": { "en": "EN", "uk": "UK" }
+}

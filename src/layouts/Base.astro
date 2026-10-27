@@ -1,18 +1,24 @@
 ---
 import '../styles/global.css';
-import site from '../content/site.json';
-const { title = `${site.name} — ${site.role}` } = Astro.props;
+import { getData, paths } from '../i18n/utils';
+const { lang = 'en' } = Astro.props;
+const { ui } = getData(lang);
+const url = (l: string) => new URL(paths[l as 'en' | 'uk'], Astro.site).href;
 ---
 <!doctype html>
-<html lang="en">
+<html lang={ui.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={site.intro} />
-    <title>{title}</title>
+    <meta name="description" content={ui.meta.description} />
+    <title>{ui.meta.title}</title>
+    <link rel="canonical" href={url(lang)} />
+    <link rel="alternate" hreflang="en" href={url('en')} />
+    <link rel="alternate" hreflang="uk" href={url('uk')} />
+    <link rel="alternate" hreflang="x-default" href={url('en')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;1,500&family=Montserrat:wght@400;500;600&subset=cyrillic,latin&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />

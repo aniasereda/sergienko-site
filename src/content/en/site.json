@@ -1,7 +1,11 @@
 {
   "name": "Victoria Sergienko",
   "role": "A professional retoucher",
-  "tagline": ["Clean color.", "Consistent results.", "Confidence in every series."],
+  "tagline": [
+    "Clean color.",
+    "Consistent results.",
+    "Confidence in every series."
+  ],
   "intro": "I help photographers increase their income without burning out. Wedding, family and personal photoshoots.",
   "social": {
     "instagram": "https://www.instagram.com/viktoria.touch/",
@@ -9,8 +13,16 @@
     "linkedin": "https://www.linkedin.com/in/victoria-sergienko-5700181a1/"
   },
   "email": "",
-  "directions": ["Wedding photoshoots", "Family photoshoots", "Personal photoshoots"],
-  "services": ["Color correction", "Skin retouching", "Packages (color correction + skin retouching)"],
+  "directions": [
+    "Wedding photoshoots",
+    "Family photoshoots",
+    "Personal photoshoots"
+  ],
+  "services": [
+    "Color correction",
+    "Skin retouching",
+    "Packages (color correction + skin retouching)"
+  ],
   "minPhotos": 10,
   "terms": "Color correction: from 1 to 5 days. Retouching: from 1 to 3 days. Terms are discussed for each order.",
   "important": "I work with a booking system, so please contact me in advance about upcoming shoots. Last-minute requests without prior booking are almost impossible.",
@@ -21,10 +33,5 @@
     "Deadline (today or tomorrow: +50–100%)",
     "Quality of the RAW files"
   ],
-  "facts": ["7+ years of experience", "Color 1–5 days", "Retouching 1–3 days"],
-  "pricesIntro": "I have an individual approach for each client, so the final cost is determined personally. The minimum order is 10 photos.",
-  "processTitle": "Calm, clear and comfortable at every stage",
-  "processIntro": "I know how difficult it can be to trust your photographs to someone else. That is why my workflow is built to be simple and transparent.",
-  "privacyUrl": "https://www.sergienko.space/privacy%20policy/",
-  "ukUrl": "https://www.sergienko.space/uk/vs/"
+  "privacyUrl": "https://www.sergienko.space/privacy%20policy/"
 }

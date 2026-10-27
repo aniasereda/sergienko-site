@@ -1,16 +1,18 @@
 ---
-import site from '../content/site.json';
-import prices from '../content/prices.json';
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { site, ui, prices } = getData(lang);
+const t = ui.prices;
 const groups = [
-  { title: 'Color correction', items: prices.color, cols: 3 },
-  { title: 'Skin retouching', items: prices.skin, cols: 2 },
+  { title: t.colorGroup, items: prices.color, cols: 3 },
+  { title: t.skinGroup, items: prices.skin, cols: 2 },
 ];
 ---
 <section class="section" id="price">
   <div class="container">
-    <p class="eyebrow">Prices</p>
-    <h2>Prices</h2>
-    <p class="lead">{site.pricesIntro}</p>
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2>{t.title}</h2>
+    <p class="lead">{t.intro}</p>
 
     {groups.map((g) => (
       <h3 class="group-title">{g.title}</h3>
@@ -18,12 +20,13 @@ const groups = [
         {g.items.map((it: any) => (
           <article class="card price-card">
             <h4>{it.name}</h4>
-            <p class="price">{it.price}<span> / photo</span></p>
+            <p class="price">{it.price}<span> {t.perPhoto}</span></p>
             <p class="muted">{it.lead}</p>
+            <p class="mini">{t.included}</p>
             <ul class="check">{it.included.map((i: string) => <li>{i}</li>)}</ul>
             {it.notIncluded && (
               <>
-                <p class="mini">Not included</p>
+                <p class="mini">{t.notIncluded}</p>
                 <ul class="cross">{it.notIncluded.map((i: string) => <li>{i}</li>)}</ul>
               </>
             )}
@@ -34,13 +37,13 @@ const groups = [
 
     <div class="grid-2 mt">
       <div class="card">
-        <h3>What affects the final price</h3>
+        <h3>{t.factorsTitle}</h3>
         <ul class="list">{site.priceFactors.map((f) => <li>{f}</li>)}</ul>
       </div>
       <div class="card">
-        <h3>Packages: color + skin</h3>
+        <h3>{t.packagesTitle}</h3>
         <p class="muted">{prices.packageNote}</p>
-        <a class="btn" href="#contact">Send photos for a quote</a>
+        <a class="btn" href="#contact">{ui.cta.sendForQuote}</a>
       </div>
     </div>
   </div>

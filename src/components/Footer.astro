@@ -1,9 +1,11 @@
 ---
-import site from '../content/site.json';
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { site, ui } = getData(lang);
 ---
 <footer class="footer">
   <div class="container footer__in">
-    <span>© {new Date().getFullYear()} {site.name}</span>
-    <a href={site.privacyUrl}>Privacy policy</a>
+    <span>{ui.footer.copyright}</span>
+    <a href={site.privacyUrl}>{ui.contact.form.privacy}</a>
   </div>
 </footer>

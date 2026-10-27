@@ -1,8 +1,11 @@
 ---
-import site from '../content/site.json';
-import portfolio from '../content/portfolio.json';
+import { getData } from '../i18n/utils';
 import Photo from './Photo.astro';
-const cols = [0, 1, 2].map((c) => portfolio.gallery.slice(c * 2, c * 2 + 2));
+const { lang } = Astro.props;
+const { site, ui, portfolio } = getData(lang);
+const g = portfolio.gallery;
+const tiles = g.length ? Array.from({ length: 6 }, (_, i) => g[i % g.length]) : [];
+const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
 ---
 <section class="hero" id="top">
   <div class="container hero__in">
@@ -12,14 +15,14 @@ const cols = [0, 1, 2].map((c) => portfolio.gallery.slice(c * 2, c * 2 + 2));
       <p class="hero__tag">{site.tagline.join(' ')}</p>
       <p class="hero__intro">{site.intro}</p>
       <div class="btns">
-        <a class="btn" href="#price">See prices</a>
-        <a class="btn btn--ghost" href="#contact">Send photos</a>
+        <a class="btn" href="#price">{ui.cta.seePrices}</a>
+        <a class="btn btn--ghost" href="#contact">{ui.cta.sendPhotos}</a>
       </div>
       <ul class="facts">
-        {site.facts.map((f) => <li>{f}</li>)}
+        {ui.hero.facts.map((f) => <li>{f}</li>)}
       </ul>
     </div>
-    <div class="collage" aria-label="Selected works">
+    <div class="collage">
       {cols.map((col) => (
         <div class="collage__col">
           {col.map((p) => <Photo src={p.src} alt={p.alt} class="collage__img" />)}

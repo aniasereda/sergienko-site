@@ -1,10 +1,12 @@
 ---
-import faq from '../content/faq.json';
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { ui, faq } = getData(lang);
 ---
 <section class="section" id="faq">
   <div class="container faq">
-    <p class="eyebrow">FAQ</p>
-    <h2>Frequently asked questions</h2>
+    <p class="eyebrow">{ui.faq.eyebrow}</p>
+    <h2>{ui.faq.title}</h2>
     <div class="acc">
       {faq.map((f, i) => (
         <div class="acc__item">

@@ -6,4 +6,4 @@ const exists = src && fs.existsSync(path.join(process.cwd(), 'public', src));
 ---
 {exists
   ? <img src={src} alt={alt} class={cls} loading="lazy" draggable="false" />
-  : <div class={`ph ${cls}`} role="img" aria-label={alt}><span>{alt || 'Photo'}</span></div>}
+  : <div class={`ph ${cls}`} role="img" aria-label={alt}><span>{alt}</span></div>}

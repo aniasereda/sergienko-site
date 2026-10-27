@@ -18,7 +18,7 @@ a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .dark :focus-visible { outline-color: var(--dark-text); }
 
-h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; line-height: 1.1; margin: 0 0 16px; }
+h1, h2, h3, h4 { overflow-wrap: break-word; hyphens: auto; font-family: var(--serif); font-weight: 500; line-height: 1.1; margin: 0 0 16px; }
 h1 { font-size: 84px; }
 h2 { font-size: 56px; }
 h3 { font-size: 30px; }
@@ -53,6 +53,10 @@ h4 { font-size: 28px; }
 .header__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
 .brand { font: 500 28px var(--serif); text-decoration: none; }
 .nav { display: flex; gap: 8px; margin-left: auto; }
+.lang { display: flex; gap: 4px; }
+.lang a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-decoration: none; border-radius: 999px; color: var(--muted); }
+.lang a:hover { color: var(--text); }
+.lang a[aria-current='page'] { background: var(--accent); color: var(--surface); font-weight: 600; }
 .nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; text-decoration: none; font-size: 14px; }
 .nav a:hover { color: var(--accent); text-decoration: underline; }
 
@@ -141,7 +145,9 @@ h4 { font-size: 28px; }
   .hero__in { gap: 40px; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .nav { display: none; }
-  .header__in { justify-content: space-between; }
+  .header__in { flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding-top: 8px; padding-bottom: 8px; }
+  .brand { font-size: 24px; }
+  .btn--sm { padding: 0 16px; font-size: 14px; }
   .card { padding: 24px; }
   .acc__btn { font-size: 22px; }
 }

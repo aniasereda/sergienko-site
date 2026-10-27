@@ -1,27 +1,31 @@
 ---
-import portfolio from '../content/portfolio.json';
+import { getData } from '../i18n/utils';
 import Photo from './Photo.astro';
+const { lang } = Astro.props;
+const { ui, portfolio } = getData(lang);
+const t = ui.portfolio;
 ---
 <section class="section" id="portfolio">
   <div class="container">
-    <p class="eyebrow">Portfolio</p>
-    <h2>Selected works</h2>
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2>{t.title}</h2>
+    <p class="lead">{t.hint}</p>
 
     {portfolio.beforeAfter.map((p) => (
       <div class="ba" data-ba>
-        <Photo src={p.before} alt={`Before: ${p.alt}`} class="ba__img" />
-        <div class="ba__after"><Photo src={p.after} alt={`After: ${p.alt}`} class="ba__img" /></div>
-        <span class="ba__tag ba__tag--l">Before</span>
-        <span class="ba__tag ba__tag--r">After</span>
+        <Photo src={p.before} alt={`${t.before} ${p.alt}`.trim()} class="ba__img" />
+        <div class="ba__after"><Photo src={p.after} alt={`${t.after} ${p.alt}`.trim()} class="ba__img" /></div>
+        <span class="ba__tag ba__tag--l">{t.before}</span>
+        <span class="ba__tag ba__tag--r">{t.after}</span>
         <div class="ba__line"></div>
-        <input type="range" min="0" max="100" value="50" aria-label="Before and after comparison" />
+        <input type="range" min="0" max="100" value="50" aria-label={`${t.before} / ${t.after}`} />
       </div>
     ))}
 
     <div class="gallery">
       {portfolio.gallery.map((p) => <Photo src={p.src} alt={p.alt} class="gallery__img" />)}
     </div>
-    <p class="center"><a class="btn btn--ghost" href={portfolio.moreWorksUrl}>More works</a></p>
+    <p class="center"><a class="btn btn--ghost" href={portfolio.moreWorksUrl}>{ui.cta.moreWorks}</a></p>
   </div>
 </section>
 
