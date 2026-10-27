@@ -1,7 +1,7 @@
 {
   "color": [
     {
-      "name": "Your Color",
+      "name": "Your Color 2",
       "price": "$0.40",
       "lead": "You provide your own preset or Lightroom catalog with your color. Best if you already have your editing style and only need it applied consistently across the whole gallery.",
       "included": [
@@ -10,7 +10,10 @@
         "Removing small unwanted elements (when possible in Lightroom)",
         "Keeping your style consistent throughout the gallery"
       ],
-      "notIncluded": ["Creating a new color style", "Local adjustments with masks"]
+      "notIncluded": [
+        "Creating a new color style",
+        "Local adjustments with masks"
+      ]
     },
     {
       "name": "Custom Color",
@@ -22,7 +25,9 @@
         "Matching the color across the entire gallery",
         "A consistent and natural look"
       ],
-      "notIncluded": ["Lightroom masks"]
+      "notIncluded": [
+        "Lightroom masks"
+      ]
     },
     {
       "name": "Color with Masks",
@@ -35,7 +40,9 @@
         "Balancing uneven lighting",
         "Correcting skin tones in selected areas"
       ],
-      "notIncluded": ["Skin retouching"]
+      "notIncluded": [
+        "Skin retouching"
+      ]
     }
   ],
   "skin": [
