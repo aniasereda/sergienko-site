@@ -1,12 +1,15 @@
 ---
-import { getData, markLast } from '../i18n/utils';
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import { getData, markLast } from '../i18n/utils';
+import { loadPortfolio } from '../lib/photos';
 import Photo from './Photo.astro';
+import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { ui, site, portfolio } = getData(lang);
 const t = ui.portfolio;
+const photos = await loadPortfolio();
 
 // real size of the photo, so the slider keeps its proportions and the page doesn't jump while loading
 async function size(src: string) {
@@ -34,11 +37,29 @@ const pairs = await Promise.all(portfolio.beforeAfter.map(async (p) => ({ ...p, 
       </div>
     ))}
 
-    <div class="gallery">
-      {portfolio.gallery.map((p) => <Photo src={p.src} alt={p.alt} class="gallery__img" />)}
-    </div>
+    {photos.length > 0 && (
+      <div class="gallery" data-gallery>
+        {photos.map((p, i) => (
+          <button class="gallery__item" type="button" data-full={p.full.src} data-w={p.full.width} data-h={p.full.height} aria-label={`${t.open} ${i + 1}`}>
+            <img src={p.thumb.src} width={p.thumb.width} height={p.thumb.height} alt={`${t.photoAlt} ${i + 1}`} loading="lazy" decoding="async" draggable="false" />
+          </button>
+        ))}
+      </div>
+    )}
     <p class="center"><a class="btn btn--ghost" href={site.moreWorksUrl}>{ui.cta.more}</a></p>
   </div>
+
+  {photos.length > 0 && (
+    <dialog class="lb" id="lightbox" aria-label={t.photoAlt}>
+      <div class="lb__stage" data-stage>
+        <img class="lb__img" alt="" />
+      </div>
+      <button class="lb__btn lb__close" type="button" data-close aria-label={t.close}><Icon name="x" /></button>
+      <button class="lb__btn lb__prev" type="button" data-prev aria-label={t.prev}><Icon name="chevron-left" /></button>
+      <button class="lb__btn lb__next" type="button" data-next aria-label={t.next}><Icon name="chevron-right" /></button>
+      <p class="lb__count" data-count aria-live="polite"></p>
+    </dialog>
+  )}
 </section>
 
 <script>
@@ -48,4 +69,47 @@ const pairs = await Promise.all(portfolio.beforeAfter.map(async (p) => ({ ...p, 
     input.addEventListener('input', update);
     update();
   });
+
+  const gallery = document.querySelector<HTMLElement>('[data-gallery]');
+  const dlg = document.getElementById('lightbox') as HTMLDialogElement | null;
+  if (gallery && dlg) {
+    const items = [...gallery.querySelectorAll<HTMLButtonElement>('.gallery__item')];
+    const img = dlg.querySelector<HTMLImageElement>('.lb__img')!;
+    const count = dlg.querySelector<HTMLElement>('[data-count]')!;
+    let cur = 0;
+
+    const show = (i: number) => {
+      cur = (i + items.length) % items.length;
+      const b = items[cur];
+      img.src = b.dataset.full!;
+      img.width = Number(b.dataset.w);
+      img.height = Number(b.dataset.h);
+      img.alt = b.querySelector('img')!.alt;
+      count.textContent = `${cur + 1} / ${items.length}`;
+      // warm the neighbours so arrows feel instant
+      [cur - 1, cur + 1].forEach((n) => { new Image().src = items[(n + items.length) % items.length].dataset.full!; });
+    };
+    const open = (i: number) => { show(i); dlg.showModal(); };
+
+    items.forEach((b, i) => b.addEventListener('click', () => open(i)));
+    dlg.querySelector('[data-close]')!.addEventListener('click', () => dlg.close());
+    dlg.querySelector('[data-prev]')!.addEventListener('click', () => show(cur - 1));
+    dlg.querySelector('[data-next]')!.addEventListener('click', () => show(cur + 1));
+    // click on the dark area (not on the photo or a button) closes
+    dlg.addEventListener('click', (e) => {
+      const t = e.target as HTMLElement;
+      if (t === dlg || t.hasAttribute('data-stage')) dlg.close();
+    });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
+    // swipe on touch screens
+    let x0 = 0;
+    dlg.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    dlg.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+    });
+  }
 </script>

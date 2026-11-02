@@ -193,7 +193,7 @@ collections:
                 widget: text
             summary: "{{fields.title}}"
       - name: portfolio
-        label: Portfolio images
+        label: Before / after slider
         format: json
         file: src/content/en/portfolio.json
         fields:
@@ -213,17 +213,6 @@ collections:
               - label: Description of the “after” photo (for screen readers)
                 name: afterAlt
                 widget: string
-          - label: Gallery photos
-            name: gallery
-            widget: list
-            fields:
-              - label: Photo
-                name: src
-                widget: image
-              - label: Short description (for screen readers)
-                name: alt
-                widget: string
-            hint: The first 6 photos are also used in the collage at the top of the page.
       - name: ui
         label: Interface texts (titles, buttons, form)
         format: json
@@ -300,6 +289,21 @@ collections:
                 widget: string
               - label: “After” label
                 name: after
+                widget: string
+              - label: Gallery photo description (number is added)
+                name: photoAlt
+                widget: string
+              - label: “Open photo” label
+                name: open
+                widget: string
+              - label: “Close” label
+                name: close
+                widget: string
+              - label: “Previous photo” label
+                name: prev
+                widget: string
+              - label: “Next photo” label
+                name: next
                 widget: string
           - label: Section titles
             name: sections
@@ -628,7 +632,7 @@ collections:
                 widget: text
             summary: "{{fields.title}}"
       - name: portfolio
-        label: Portfolio images
+        label: Before / after slider
         format: json
         file: src/content/uk/portfolio.json
         fields:
@@ -648,17 +652,6 @@ collections:
               - label: Description of the “after” photo (for screen readers)
                 name: afterAlt
                 widget: string
-          - label: Gallery photos
-            name: gallery
-            widget: list
-            fields:
-              - label: Photo
-                name: src
-                widget: image
-              - label: Short description (for screen readers)
-                name: alt
-                widget: string
-            hint: The first 6 photos are also used in the collage at the top of the page.
       - name: ui
         label: Interface texts (titles, buttons, form)
         format: json
@@ -739,6 +732,21 @@ collections:
                 widget: string
               - label: “After” label
                 name: after
+                widget: string
+              - label: Gallery photo description (number is added)
+                name: photoAlt
+                widget: string
+              - label: “Open photo” label
+                name: open
+                widget: string
+              - label: “Close” label
+                name: close
+                widget: string
+              - label: “Previous photo” label
+                name: prev
+                widget: string
+              - label: “Next photo” label
+                name: next
                 widget: string
           - label: Section titles
             name: sections

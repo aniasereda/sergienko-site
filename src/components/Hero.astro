@@ -1,12 +1,11 @@
 ---
 import { getData } from '../i18n/utils';
-import Photo from './Photo.astro';
+import { loadPortfolio, loadPortrait } from '../lib/photos';
 import Icon from './Icon.astro';
 const { lang } = Astro.props;
-const { site, ui, portfolio } = getData(lang);
-const g = portfolio.gallery;
-const tiles = Array.from({ length: 6 }, (_, i) => g[i % g.length]);
-const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
+const { site, ui } = getData(lang);
+const portrait = await loadPortrait();
+const strip = (await loadPortfolio()).slice(0, 6);
 const dirIcons = ['heart', 'home', 'camera'];
 ---
 <section class="hero" id="top">
@@ -15,10 +14,7 @@ const dirIcons = ['heart', 'home', 'camera'];
       <p class="sticker">{site.role}</p>
       <h1>{site.name}</h1>
       <p class="hero__tag">{site.tagline.join(' ')}</p>
-      <div class="hero__about">
-        <Photo src="/images/victoria.jpg" alt={ui.hero.portrait} class="portrait" />
-        <p class="hero__intro">{site.intro}</p>
-      </div>
+      <p class="hero__intro">{site.intro}</p>
       <ul class="dirs">
         {site.directions.map((d, i) => (
           <li><span class="badge"><Icon name={dirIcons[i] ?? 'camera'} /></span>{d}</li>
@@ -29,12 +25,28 @@ const dirIcons = ['heart', 'home', 'camera'];
         <a class="btn btn--ghost" href="#price">{ui.cta.prices}</a>
       </div>
     </div>
-    <div class="collage">
-      {cols.map((col) => (
-        <div class="collage__col">
-          {col.map((p) => <Photo src={p.src} alt={p.alt} class="collage__img" />)}
-        </div>
-      ))}
-    </div>
+    {portrait && (
+      <div class="portrait">
+        <img
+          src={portrait.x2.src}
+          srcset={`${portrait.x1.src} ${portrait.x1.width}w, ${portrait.x2.src} ${portrait.x2.width}w`}
+          sizes="(max-width: 900px) 100vw, 440px"
+          width={portrait.x2.width}
+          height={portrait.x2.height}
+          alt={site.name}
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    )}
   </div>
+  {strip.length > 0 && (
+    <div class="container">
+      <div class="strip">
+        {strip.map((p, i) => (
+          <img src={p.thumb.src} width={p.thumb.width} height={p.thumb.height} alt="" loading="lazy" decoding="async" />
+        ))}
+      </div>
+    </div>
+  )}
 </section>
