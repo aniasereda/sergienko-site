@@ -1,10 +1,9 @@
 ---
 import { getData } from '../i18n/utils';
-import { loadPortfolio, loadPortrait } from '../lib/photos';
+import { loadPortfolio } from '../lib/photos';
 import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { site, ui } = getData(lang);
-const portrait = await loadPortrait();
 const tiles = (await loadPortfolio()).slice(0, 6);
 const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
 const dirIcons = ['heart', 'home', 'camera'];
@@ -15,22 +14,6 @@ const dirIcons = ['heart', 'home', 'camera'];
       <p class="sticker">{site.role}</p>
       <h1>{site.name}</h1>
       <p class="hero__tag">{site.tagline.join(' ')}</p>
-      <div class="hero__about">
-        {portrait && (
-          <img
-            class="portrait"
-            src={portrait.x2.src}
-            srcset={`${portrait.x1.src} ${portrait.x1.width}w, ${portrait.x2.src} ${portrait.x2.width}w`}
-            sizes="(max-width: 900px) 100vw, 280px"
-            width={portrait.x2.width}
-            height={portrait.x2.height}
-            alt={site.name}
-            fetchpriority="high"
-            decoding="async"
-          />
-        )}
-        <p class="hero__intro">{site.intro}</p>
-      </div>
       <ul class="dirs">
         {site.directions.map((d, i) => (
           <li><span class="badge"><Icon name={dirIcons[i] ?? 'camera'} /></span>{d}</li>

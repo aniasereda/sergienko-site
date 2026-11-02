@@ -6,11 +6,6 @@ const files = import.meta.glob<ImageMetadata>(
   ['/public/images/portfolio/*.png', '/public/images/portfolio/*.jpg', '/public/images/portfolio/*.jpeg', '/public/images/portfolio/*.webp'],
   { eager: true, import: 'default' },
 );
-const portraitFiles = import.meta.glob<ImageMetadata>(
-  ['/public/images/victoria.png', '/public/images/victoria.jpg', '/public/images/victoria.jpeg', '/public/images/victoria.webp'],
-  { eager: true, import: 'default' },
-);
-
 export type Pic = { src: string; width: number; height: number };
 
 // never ask for more pixels than the original has
@@ -27,10 +22,4 @@ export function loadPortfolio() {
       .map(async ([, img]) => ({ thumb: await webp(img, 700, 80), full: await webp(img, 1600, 82) })),
   );
   return cache;
-}
-
-export async function loadPortrait(): Promise<{ x1: Pic; x2: Pic } | null> {
-  const img = Object.values(portraitFiles)[0];
-  if (!img) return null;
-  return { x1: await webp(img, 440, 82), x2: await webp(img, 880, 82) };
 }
