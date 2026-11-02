@@ -5,7 +5,8 @@ import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { site, ui } = getData(lang);
 const portrait = await loadPortrait();
-const strip = (await loadPortfolio()).slice(0, 6);
+const tiles = (await loadPortfolio()).slice(0, 6);
+const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
 const dirIcons = ['heart', 'home', 'camera'];
 ---
 <section class="hero" id="top">
@@ -14,7 +15,22 @@ const dirIcons = ['heart', 'home', 'camera'];
       <p class="sticker">{site.role}</p>
       <h1>{site.name}</h1>
       <p class="hero__tag">{site.tagline.join(' ')}</p>
-      <p class="hero__intro">{site.intro}</p>
+      <div class="hero__about">
+        {portrait && (
+          <img
+            class="portrait"
+            src={portrait.x2.src}
+            srcset={`${portrait.x1.src} ${portrait.x1.width}w, ${portrait.x2.src} ${portrait.x2.width}w`}
+            sizes="(max-width: 900px) 100vw, 280px"
+            width={portrait.x2.width}
+            height={portrait.x2.height}
+            alt={site.name}
+            fetchpriority="high"
+            decoding="async"
+          />
+        )}
+        <p class="hero__intro">{site.intro}</p>
+      </div>
       <ul class="dirs">
         {site.directions.map((d, i) => (
           <li><span class="badge"><Icon name={dirIcons[i] ?? 'camera'} /></span>{d}</li>
@@ -25,28 +41,14 @@ const dirIcons = ['heart', 'home', 'camera'];
         <a class="btn btn--ghost" href="#price">{ui.cta.prices}</a>
       </div>
     </div>
-    {portrait && (
-      <div class="portrait">
-        <img
-          src={portrait.x2.src}
-          srcset={`${portrait.x1.src} ${portrait.x1.width}w, ${portrait.x2.src} ${portrait.x2.width}w`}
-          sizes="(max-width: 900px) 100vw, 440px"
-          width={portrait.x2.width}
-          height={portrait.x2.height}
-          alt={site.name}
-          fetchpriority="high"
-          decoding="async"
-        />
+    {tiles.length > 0 && (
+      <div class="collage">
+        {cols.map((col) => (
+          <div class="collage__col">
+            {col.map((p) => <img class="collage__img" src={p.thumb.src} width={p.thumb.width} height={p.thumb.height} alt="" loading="lazy" decoding="async" />)}
+          </div>
+        ))}
       </div>
     )}
   </div>
-  {strip.length > 0 && (
-    <div class="container">
-      <div class="strip">
-        {strip.map((p, i) => (
-          <img src={p.thumb.src} width={p.thumb.width} height={p.thumb.height} alt="" loading="lazy" decoding="async" />
-        ))}
-      </div>
-    </div>
-  )}
 </section>
