@@ -1,0 +1,13 @@
+{
+  "groups": [
+    { "label": "With advance booking", "highlight": true,
+      "rows": [ { "volume": "Up to 300 photos", "time": "up to 3 days" }, { "volume": "Over 300 photos", "time": "up to 5 days" } ] },
+    { "label": "Without advance booking", "highlight": false,
+      "rows": [ { "volume": "Up to 300 photos", "time": "up to 8 days" }, { "volume": "Over 300 photos", "time": "up to 14 days" } ] }
+  ],
+  "notes": [
+    "The clock starts once I’ve received your files, we’ve confirmed all the details and payment has been made in full.",
+    "Sundays are not counted."
+  ],
+  "rush": "Rush orders (needed yesterday or tomorrow) are available at double the regular rate, depending on my availability."
+}

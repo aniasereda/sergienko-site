@@ -1,37 +1,15 @@
 {
   "name": "Victoria Sergienko",
   "role": "A professional retoucher",
-  "tagline": [
-    "Clean color.",
-    "Consistent results.",
-    "Confidence in every series."
-  ],
-  "intro": "I help photographers increase their income without burning out. Wedding, family and personal photoshoots.",
+  "tagline": ["Clean color.", "Consistent results.", "Confidence in every series."],
+  "intro": "I help photographers grow their income without burning out.",
+  "directions": ["Wedding", "Family", "Personal photoshoots"],
+  "minPhotos": 10,
   "social": {
     "instagram": "https://www.instagram.com/viktoria.touch/",
     "facebook": "https://www.facebook.com/profile.php?id=100010429836367",
     "linkedin": "https://www.linkedin.com/in/victoria-sergienko-5700181a1/"
   },
-  "email": "",
-  "directions": [
-    "Wedding photoshoots",
-    "Family photoshoots",
-    "Personal photoshoots"
-  ],
-  "services": [
-    "Color correction",
-    "Skin retouching",
-    "Packages (color correction + skin retouching)"
-  ],
-  "minPhotos": 10,
-  "terms": "Color correction: from 1 to 5 days. Retouching: from 1 to 3 days. Terms are discussed for each order.",
-  "important": "I work with a booking system, so please contact me in advance about upcoming shoots. Last-minute requests without prior booking are almost impossible.",
-  "priceFactors": [
-    "Statement of work and the overall complexity",
-    "Number of people in the frame (more for two or more people who need complex correction)",
-    "Skin condition (more for problematic skin)",
-    "Deadline (today or tomorrow: +50–100%)",
-    "Quality of the RAW files"
-  ],
-  "privacyUrl": "https://www.sergienko.space/privacy%20policy/"
+  "privacyUrl": "https://www.sergienko.space/privacy%20policy/",
+  "moreWorksUrl": "https://www.sergienko.space/portfolio"
 }

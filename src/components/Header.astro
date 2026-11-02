@@ -2,32 +2,33 @@
 import { getData, paths } from '../i18n/utils';
 const { lang } = Astro.props;
 const { site, ui } = getData(lang);
+const sw = ui.langSwitcher;
 ---
 <header class="header">
   <div class="container header__in">
     <a class="brand" href="#top">{site.name}</a>
     <nav class="nav">
       <a href="#price">{ui.nav.prices}</a>
-      <a href="#process">{ui.nav.process}</a>
-      <a href="#portfolio">{ui.nav.portfolio}</a>
-      <a href="#faq">{ui.nav.faq}</a>
+      <a href="#terms">{ui.nav.terms}</a>
+      <a href="#booking">{ui.nav.booking}</a>
+      <a href="#start">{ui.nav.start}</a>
     </nav>
     <div class="lang" data-lang>
-      <button class="lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label={ui.switcher.label}>
-        <span>{ui.switcher[lang]}</span><i aria-hidden="true"></i>
+      <button class="lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label={`${sw.label}: ${sw[lang]}`}>
+        <span>{lang.toUpperCase()}</span><i aria-hidden="true"></i>
       </button>
       <ul class="lang__menu" id="lang-menu" hidden>
         {(['en', 'uk'] as const).map((l) => (
           <li>
             <a href={paths[l]} lang={l} hreflang={l} aria-current={l === lang ? 'true' : undefined}>
-              <span>{ui.switcher.names[l]}</span>
+              <span>{sw[l]}</span>
               {l === lang && <b aria-hidden="true">✓</b>}
             </a>
           </li>
         ))}
       </ul>
     </div>
-    <a class="btn btn--sm" href="#contact">{ui.cta.sendPhotos}</a>
+    <a class="btn btn--sm" href="#contact">{ui.cta.request}</a>
   </div>
 </header>
 

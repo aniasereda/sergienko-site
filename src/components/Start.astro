@@ -1,0 +1,20 @@
+---
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { ui, steps } = getData(lang);
+const t = ui.sections.start;
+---
+<section class="section section--tint" id="start">
+  <div class="container">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2>{t.title}</h2>
+    <ol class="start">
+      {steps.map((s) => (
+        <li>
+          <h4>{s.title}</h4>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

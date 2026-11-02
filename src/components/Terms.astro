@@ -1,0 +1,33 @@
+---
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { ui, turnaround } = getData(lang);
+const t = ui.sections.terms;
+---
+<section class="section section--tint" id="terms">
+  <div class="container">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2>{t.title}</h2>
+
+    <div class="grid-2">
+      {turnaround.groups.map((g) => (
+        <article class={`card terms-card${g.highlight ? ' terms-card--hl' : ''}`}>
+          <h3>{g.label}</h3>
+          <ul class="terms-rows">
+            {g.rows.map((r) => (
+              <li>
+                <span class="terms-volume">{r.volume}</span>
+                <span class="terms-time">{r.time}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <ul class="notes">
+      {turnaround.notes.map((n) => <li>{n}</li>)}
+    </ul>
+    <p class="rush">{turnaround.rush}</p>
+  </div>
+</section>

@@ -1,10 +1,10 @@
 {
-  "beforeAfter": [
-    { "before": "/images/before-1.jpg", "after": "/images/after-1.jpg", "alt": "" }
-  ],
   "gallery": [
     { "src": "/images/work-1.jpg", "alt": "Весільне фото" },
-    { "src": "/images/work-2.jpg", "alt": "Портрет" }
-  ],
-  "moreWorksUrl": "https://www.sergienko.space/portfolioua/"
+    { "src": "/images/work-2.jpg", "alt": "Портрет" },
+    { "src": "/images/work-3.jpg", "alt": "Сімейне фото" },
+    { "src": "/images/work-4.jpg", "alt": "Пара на заході сонця" },
+    { "src": "/images/work-5.jpg", "alt": "Персональна зйомка" },
+    { "src": "/images/work-6.jpg", "alt": "Весільні деталі" }
+  ]
 }

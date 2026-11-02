@@ -1,28 +1,7 @@
-{
-  "items": [
-    {
-      "title": "Reach out",
-      "text": "Send me a message via Direct or email. We briefly discuss what you need (color correction, skin retouching or full editing), the number of photos, deadlines and the collaboration format. No unnecessary steps or complicated technical details."
-    },
-    {
-      "title": "Send your photos",
-      "text": "Send a link via any file-sharing service (Google Drive, Dropbox, WeTransfer). Color work: RAW files only. Skin retouching: JPEG or TIFF. Minimum order: 10 photos. Please include references or examples of the desired result."
-    },
-    {
-      "title": "Color workflow",
-      "text": "No defined style yet? I select one photo from each location, create several color options, you choose the one that feels right, and I fine-tune the details. If you already have your own style, you send a folder with key edited images and the full order is paid upfront."
-    },
-    {
-      "title": "Retouching",
-      "text": "For skin retouching only, I do one free test image and you review and approve it. After confirmation we proceed with payment and the full order. I don’t offer free test retouching for entire series, which lets me keep quality and focus on real projects."
-    },
-    {
-      "title": "Payment",
-      "text": "After you approve the color or the test image, you receive a payment link, or you can pay via bank details. I work officially, so the payment process is simple and transparent."
-    },
-    {
-      "title": "Editing and delivery",
-      "text": "After payment I start the full editing and deliver the finished photos within the agreed timeframe."
-    }
-  ]
-}
+[
+  { "title": "Write to me", "text": "Fill in the form below or send a DM: what you need, how many photos and when." },
+  { "title": "Send your photos", "text": "A link via Google Drive, Dropbox or WeTransfer. Color: RAW files. Skin retouching: JPEG or TIFF. From 10 photos. Please add references." },
+  { "title": "Approve the result", "text": "For color I make several options and you choose. For retouching I do one test photo. If you have your own style, send a catalog with key edited photos. No free tests for a whole series." },
+  { "title": "Payment", "text": "Once approved, you get a payment link or bank details. I work officially." },
+  { "title": "Your finished photos", "text": "After payment I edit the whole series and deliver it within the agreed time." }
+]

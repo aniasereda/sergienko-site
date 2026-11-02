@@ -1,0 +1,39 @@
+---
+import { getData } from '../i18n/utils';
+const { lang } = Astro.props;
+const { ui, booking } = getData(lang);
+const t = ui.sections.booking;
+const imp = booking.important;
+---
+<section class="section" id="booking">
+  <div class="container">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2>{t.title}</h2>
+    <p class="lead">{booking.subtitle}</p>
+
+    <ol class="flow">
+      {booking.steps.map((s, i) => (
+        <li class="flow__step">
+          <span class="flow__n">{i + 1}</span>
+          <span>{s}</span>
+        </li>
+      ))}
+    </ol>
+
+    <div class="grid-2 booking__row">
+      <div>
+        <p class="mini">{booking.exampleLabel}</p>
+        <p class="bubble">{booking.example}</p>
+      </div>
+      <p class="result">{booking.result}</p>
+    </div>
+
+    <div class="card important">
+      <h3>{imp.title}</h3>
+      <p>{imp.text}</p>
+      <p class="warning">{imp.warning}</p>
+      <p>{imp.closing}</p>
+      <p class="important__cta"><strong>{imp.cta}</strong></p>
+    </div>
+  </div>
+</section>

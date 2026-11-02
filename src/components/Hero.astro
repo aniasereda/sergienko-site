@@ -4,7 +4,7 @@ import Photo from './Photo.astro';
 const { lang } = Astro.props;
 const { site, ui, portfolio } = getData(lang);
 const g = portfolio.gallery;
-const tiles = g.length ? Array.from({ length: 6 }, (_, i) => g[i % g.length]) : [];
+const tiles = Array.from({ length: 6 }, (_, i) => g[i % g.length]);
 const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
 ---
 <section class="hero" id="top">
@@ -14,13 +14,11 @@ const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
       <h1>{site.name}</h1>
       <p class="hero__tag">{site.tagline.join(' ')}</p>
       <p class="hero__intro">{site.intro}</p>
+      <p class="hero__dirs">{site.directions.join(' · ')}</p>
       <div class="btns">
-        <a class="btn" href="#price">{ui.cta.seePrices}</a>
-        <a class="btn btn--ghost" href="#contact">{ui.cta.sendPhotos}</a>
+        <a class="btn" href="#price">{ui.cta.prices}</a>
+        <a class="btn btn--ghost" href="#contact">{ui.cta.request}</a>
       </div>
-      <ul class="facts">
-        {ui.hero.facts.map((f) => <li>{f}</li>)}
-      </ul>
     </div>
     <div class="collage">
       {cols.map((col) => (
