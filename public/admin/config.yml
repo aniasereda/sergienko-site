@@ -2,245 +2,886 @@ backend:
   name: github
   repo: aniasereda/sergienko-site
   branch: main
-
 publish_mode: simple
 media_folder: public/images
 public_folder: /images
-
-
 collections:
   - name: en
-    label: "English"
+    label: English
     files:
-      - name: prices
-        label: "Prices"
-        format: json
-        file: src/content/en/prices.json
-        fields:
-          - label: "Color correction tiers"
-            name: color
-            widget: list
-            summary: "{{fields.name}} — {{fields.price}}"
-            fields:
-              - { label: "Name", name: name, widget: string }
-              - { label: "Price (e.g. $0.40)", name: price, widget: string }
-              - { label: "Short description", name: lead, widget: text }
-              - label: "Included"
-                name: included
-                widget: list
-                field: { label: "Item", name: item, widget: text }
-              - label: "Not included"
-                name: notIncluded
-                widget: list
-                field: { label: "Item", name: item, widget: text }
-          - label: "Skin retouching tiers"
-            name: skin
-            widget: list
-            summary: "{{fields.name}} — {{fields.price}}"
-            fields:
-              - { label: "Name", name: name, widget: string }
-              - { label: "Price (e.g. $3)", name: price, widget: string }
-              - { label: "Short description", name: lead, widget: text }
-              - label: "Included"
-                name: included
-                widget: list
-                field: { label: "Item", name: item, widget: text }
-          - { label: "Text in the “Packages” card", name: packageNote, widget: text }
-      - name: steps
-        label: "Steps (How it works)"
-        format: json
-        file: src/content/en/steps.json
-        fields:
-          - label: "Steps"
-            name: items
-            widget: list
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "Title", name: title, widget: string }
-              - { label: "Text", name: text, widget: text }
-      - name: faq
-        label: "FAQ"
-        format: json
-        file: src/content/en/faq.json
-        fields:
-          - label: "Questions"
-            name: items
-            widget: list
-            summary: "{{fields.q}}"
-            fields:
-              - { label: "Question", name: q, widget: string }
-              - { label: "Answer", name: a, widget: text }
-      - name: portfolio
-        label: "Portfolio images"
-        format: json
-        file: src/content/en/portfolio.json
-        fields:
-          - label: "Before / after pairs"
-            name: beforeAfter
-            widget: list
-            fields:
-              - { label: "Before photo", name: before, widget: image }
-              - { label: "After photo", name: after, widget: image }
-              - { label: "Description of the photo (for screen readers)", name: alt, widget: string, required: false }
-          - label: "Gallery photos"
-            name: gallery
-            widget: list
-            hint: "The first 6 photos are also used in the collage at the top of the page."
-            fields:
-              - { label: "Photo", name: src, widget: image }
-              - { label: "Description of the photo (for screen readers)", name: alt, widget: string }
-          - { label: "“More works” link", name: moreWorksUrl, widget: string }
       - name: contacts
-        label: "Contacts and main texts"
+        label: Main texts and contacts
         format: json
         file: src/content/en/site.json
         fields:
-          - { label: "Name", name: name, widget: string }
-          - { label: "Role (small text above the name)", name: role, widget: string }
-          - label: "Tagline (three short phrases)"
+          - label: Name
+            name: name
+            widget: string
+          - label: Role (small text above the name)
+            name: role
+            widget: string
+          - label: Tagline (three short phrases)
             name: tagline
             widget: list
-            field: { label: "Item", name: item, widget: text }
-          - { label: "Intro text under the tagline", name: intro, widget: text }
-          - label: "Social links"
+            field:
+              label: Item
+              name: item
+              widget: string
+          - label: Intro text next to the portrait
+            name: intro
+            widget: text
+          - label: Directions of work (shown in one line)
+            name: directions
+            widget: list
+            field:
+              label: Item
+              name: item
+              widget: string
+          - label: Minimum number of photos
+            name: minPhotos
+            widget: number
+            value_type: int
+            min: 1
+          - label: Social links
             name: social
             widget: object
             fields:
-              - { label: "Instagram", name: instagram, widget: string }
-              - { label: "Facebook", name: facebook, widget: string }
-              - { label: "LinkedIn", name: linkedin, widget: string }
-          - { label: "Email shown on the site (leave empty to hide)", name: email, widget: string, required: false }
-          - label: "Directions of work"
-            name: directions
-            widget: list
-            field: { label: "Item", name: item, widget: text }
-          - label: "Services"
-            name: services
-            widget: list
-            field: { label: "Item", name: item, widget: text }
-          - { label: "Minimum number of photos", name: minPhotos, widget: number, value_type: int, min: 1 }
-          - { label: "Terms", name: terms, widget: text }
-          - { label: "Important to know", name: important, widget: text }
-          - label: "What affects the final price"
-            name: priceFactors
-            widget: list
-            field: { label: "Item", name: item, widget: text }
-          - { label: "Privacy policy link", name: privacyUrl, widget: string }
-  - name: uk
-    label: "Українська"
-    files:
+              - label: Instagram
+                name: instagram
+                widget: string
+              - label: Facebook
+                name: facebook
+                widget: string
+              - label: LinkedIn
+                name: linkedin
+                widget: string
+          - label: Privacy policy link
+            name: privacyUrl
+            widget: string
+          - label: “More works” link
+            name: moreWorksUrl
+            widget: string
       - name: prices
-        label: "Prices"
+        label: Prices
         format: json
-        file: src/content/uk/prices.json
+        file: src/content/en/prices.json
         fields:
-          - label: "Color correction tiers"
+          - label: Color correction
             name: color
             widget: list
+            fields: &a1
+              - label: Name
+                name: name
+                widget: string
+              - label: Price (e.g. $0.40)
+                name: price
+                widget: string
+              - label: One-line description
+                name: text
+                widget: text
             summary: "{{fields.name}} — {{fields.price}}"
-            fields:
-              - { label: "Name", name: name, widget: string }
-              - { label: "Price (e.g. $0.40)", name: price, widget: string }
-              - { label: "Short description", name: lead, widget: text }
-              - label: "Included"
-                name: included
-                widget: list
-                field: { label: "Item", name: item, widget: text }
-              - label: "Not included"
-                name: notIncluded
-                widget: list
-                field: { label: "Item", name: item, widget: text }
-          - label: "Skin retouching tiers"
+          - label: Skin retouching
             name: skin
             widget: list
+            fields: *a1
             summary: "{{fields.name}} — {{fields.price}}"
+          - label: What affects the final price
+            name: factors
+            widget: text
+          - label: Note under the prices (starts with *)
+            name: note
+            widget: text
+      - name: turnaround
+        label: Turnaround times
+        format: json
+        file: src/content/en/turnaround.json
+        fields:
+          - label: Two columns
+            name: groups
+            widget: list
             fields:
-              - { label: "Name", name: name, widget: string }
-              - { label: "Price (e.g. $3)", name: price, widget: string }
-              - { label: "Short description", name: lead, widget: text }
-              - label: "Included"
-                name: included
+              - label: Column title
+                name: label
+                widget: string
+              - label: Highlighted column (light background, orange time)
+                name: highlight
+                widget: boolean
+                required: false
+              - label: Rows
+                name: rows
                 widget: list
-                field: { label: "Item", name: item, widget: text }
-          - { label: "Text in the “Packages” card", name: packageNote, widget: text }
+                fields:
+                  - label: Volume (e.g. Up to 300 photos)
+                    name: volume
+                    widget: string
+                  - label: Time (e.g. up to 3 days)
+                    name: time
+                    widget: string
+                summary: "{{fields.volume}} — {{fields.time}}"
+            summary: "{{fields.label}}"
+            min: 2
+            max: 2
+          - label: Notes (with check marks)
+            name: notes
+            widget: list
+            field:
+              label: Item
+              name: item
+              widget: string
+          - label: Rush orders (red banner)
+            name: rush
+            widget: text
+      - name: booking
+        label: How to book
+        format: json
+        file: src/content/en/booking.json
+        fields:
+          - label: Subtitle (sticker on the banner)
+            name: subtitle
+            widget: string
+          - label: Three steps
+            name: steps
+            widget: list
+            field:
+              label: Item
+              name: item
+              widget: string
+            min: 3
+            max: 3
+          - label: Label above the example
+            name: exampleLabel
+            widget: string
+          - label: Example (speech bubble)
+            name: example
+            widget: text
+          - label: Result (next to the example)
+            name: result
+            widget: text
+          - label: “Important” block
+            name: important
+            widget: object
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: text
+                widget: text
+              - label: Warning (red)
+                name: warning
+                widget: text
+              - label: Closing text
+                name: closing
+                widget: text
+              - label: Call to action
+                name: cta
+                widget: string
       - name: steps
-        label: "Steps (How it works)"
+        label: How to start (steps)
         format: json
-        file: src/content/uk/steps.json
+        file: src/content/en/steps.json
         fields:
-          - label: "Steps"
+          - label: Steps
             name: items
             widget: list
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: text
+                widget: text
             summary: "{{fields.title}}"
-            fields:
-              - { label: "Title", name: title, widget: string }
-              - { label: "Text", name: text, widget: text }
-      - name: faq
-        label: "FAQ"
-        format: json
-        file: src/content/uk/faq.json
-        fields:
-          - label: "Questions"
-            name: items
-            widget: list
-            summary: "{{fields.q}}"
-            fields:
-              - { label: "Question", name: q, widget: string }
-              - { label: "Answer", name: a, widget: text }
       - name: portfolio
-        label: "Portfolio images"
+        label: Portfolio images
         format: json
-        file: src/content/uk/portfolio.json
+        file: src/content/en/portfolio.json
         fields:
-          - label: "Before / after pairs"
+          - label: Before / after pairs
             name: beforeAfter
             widget: list
             fields:
-              - { label: "Before photo", name: before, widget: image }
-              - { label: "After photo", name: after, widget: image }
-              - { label: "Description of the photo (for screen readers)", name: alt, widget: string, required: false }
-          - label: "Gallery photos"
+              - label: Before photo
+                name: before
+                widget: image
+              - label: After photo
+                name: after
+                widget: image
+              - label: Short description (for screen readers)
+                name: alt
+                widget: string
+                required: false
+          - label: Gallery photos
             name: gallery
             widget: list
-            hint: "The first 6 photos are also used in the collage at the top of the page."
             fields:
-              - { label: "Photo", name: src, widget: image }
-              - { label: "Description of the photo (for screen readers)", name: alt, widget: string }
-          - { label: "“More works” link", name: moreWorksUrl, widget: string }
+              - label: Photo
+                name: src
+                widget: image
+              - label: Short description (for screen readers)
+                name: alt
+                widget: string
+            hint: The first 6 photos are also used in the collage at the top of the page.
+      - name: ui
+        label: Interface texts (titles, buttons, form)
+        format: json
+        file: src/i18n/ui.en.json
+        fields:
+          - label: Language code
+            name: lang
+            widget: hidden
+            default: en
+          - label: Browser tab and search results
+            name: meta
+            widget: object
+            fields:
+              - label: Page title
+                name: title
+                widget: string
+              - label: Page description
+                name: description
+                widget: text
+          - label: Menu
+            name: nav
+            widget: object
+            fields:
+              - label: Prices
+                name: prices
+                widget: string
+              - label: Turnaround
+                name: terms
+                widget: string
+              - label: Booking
+                name: booking
+                widget: string
+              - label: How to start
+                name: start
+                widget: string
+              - label: Contact
+                name: contact
+                widget: string
+          - label: Buttons
+            name: cta
+            widget: object
+            fields:
+              - label: See prices
+                name: prices
+                widget: string
+              - label: Send a request
+                name: request
+                widget: string
+              - label: More works
+                name: more
+                widget: string
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - label: Caption of the portrait placeholder
+                name: portrait
+                widget: string
+          - label: Portfolio section
+            name: portfolio
+            widget: object
+            fields:
+              - label: Label above the title
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Hint under the title
+                name: hint
+                widget: string
+              - label: “Before” label
+                name: before
+                widget: string
+              - label: “After” label
+                name: after
+                widget: string
+          - label: Section titles
+            name: sections
+            widget: object
+            fields:
+              - label: Prices
+                name: prices
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Color correction heading
+                    name: color
+                    widget: string
+                  - label: Skin retouching heading
+                    name: skin
+                    widget: string
+                  - label: “per photo” text
+                    name: perPhoto
+                    widget: string
+              - label: Turnaround
+                name: terms
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+              - label: Booking
+                name: booking
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+              - label: How to start
+                name: start
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+              - label: Contact
+                name: contact
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Text under the title
+                    name: text
+                    widget: text
+          - label: Contact form
+            name: form
+            widget: object
+            fields:
+              - label: Name label
+                name: name
+                widget: string
+              - label: Email label
+                name: email
+                widget: string
+              - label: Instagram label
+                name: instagram
+                widget: string
+              - label: Instagram placeholder
+                name: instagramHint
+                widget: string
+              - label: “I need” label
+                name: need
+                widget: string
+              - label: “I need” options
+                name: options
+                widget: list
+                field:
+                  label: Item
+                  name: item
+                  widget: string
+              - label: Number of photos label
+                name: count
+                widget: string
+              - label: Message label
+                name: message
+                widget: string
+              - label: “Required” label
+                name: required
+                widget: string
+              - label: Error messages
+                name: errors
+                widget: object
+                fields:
+                  - label: Invalid email
+                    name: email
+                    widget: string
+                  - label: Missing Instagram
+                    name: instagram
+                    widget: string
+                  - label: Missing name
+                    name: name
+                    widget: string
+              - label: Send button
+                name: send
+                widget: string
+              - label: Consent text
+                name: consent
+                widget: text
+              - label: Privacy policy link text
+                name: privacy
+                widget: string
+              - label: “Thank you” title
+                name: thanksTitle
+                widget: string
+              - label: “Thank you” text
+                name: thanksText
+                widget: string
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - label: Copyright line
+                name: copyright
+                widget: string
+          - label: Language switcher
+            name: langSwitcher
+            widget: object
+            fields:
+              - label: Accessible label
+                name: label
+                widget: string
+              - label: English
+                name: en
+                widget: string
+              - label: Ukrainian
+                name: uk
+                widget: string
+  - name: uk
+    label: Українська
+    files:
       - name: contacts
-        label: "Contacts and main texts"
+        label: Main texts and contacts
         format: json
         file: src/content/uk/site.json
         fields:
-          - { label: "Name", name: name, widget: string }
-          - { label: "Role (small text above the name)", name: role, widget: string }
-          - label: "Tagline (three short phrases)"
+          - label: Name
+            name: name
+            widget: string
+          - label: Role (small text above the name)
+            name: role
+            widget: string
+          - label: Tagline (three short phrases)
             name: tagline
             widget: list
-            field: { label: "Item", name: item, widget: text }
-          - { label: "Intro text under the tagline", name: intro, widget: text }
-          - label: "Social links"
+            field:
+              label: Item
+              name: item
+              widget: string
+          - label: Intro text next to the portrait
+            name: intro
+            widget: text
+          - label: Directions of work (shown in one line)
+            name: directions
+            widget: list
+            field:
+              label: Item
+              name: item
+              widget: string
+          - label: Minimum number of photos
+            name: minPhotos
+            widget: number
+            value_type: int
+            min: 1
+          - label: Social links
             name: social
             widget: object
             fields:
-              - { label: "Instagram", name: instagram, widget: string }
-              - { label: "Facebook", name: facebook, widget: string }
-              - { label: "LinkedIn", name: linkedin, widget: string }
-          - { label: "Email shown on the site (leave empty to hide)", name: email, widget: string, required: false }
-          - label: "Directions of work"
-            name: directions
+              - label: Instagram
+                name: instagram
+                widget: string
+              - label: Facebook
+                name: facebook
+                widget: string
+              - label: LinkedIn
+                name: linkedin
+                widget: string
+          - label: Privacy policy link
+            name: privacyUrl
+            widget: string
+          - label: “More works” link
+            name: moreWorksUrl
+            widget: string
+      - name: prices
+        label: Prices
+        format: json
+        file: src/content/uk/prices.json
+        fields:
+          - label: Color correction
+            name: color
             widget: list
-            field: { label: "Item", name: item, widget: text }
-          - label: "Services"
-            name: services
+            fields: *a1
+            summary: "{{fields.name}} — {{fields.price}}"
+          - label: Skin retouching
+            name: skin
             widget: list
-            field: { label: "Item", name: item, widget: text }
-          - { label: "Minimum number of photos", name: minPhotos, widget: number, value_type: int, min: 1 }
-          - { label: "Terms", name: terms, widget: text }
-          - { label: "Important to know", name: important, widget: text }
-          - label: "What affects the final price"
-            name: priceFactors
+            fields: *a1
+            summary: "{{fields.name}} — {{fields.price}}"
+          - label: What affects the final price
+            name: factors
+            widget: text
+          - label: Note under the prices (starts with *)
+            name: note
+            widget: text
+      - name: turnaround
+        label: Turnaround times
+        format: json
+        file: src/content/uk/turnaround.json
+        fields:
+          - label: Two columns
+            name: groups
             widget: list
-            field: { label: "Item", name: item, widget: text }
-          - { label: "Privacy policy link", name: privacyUrl, widget: string }
-          - { label: "Portfolio link (not used on the page)", name: moreWorksUrl, widget: string, required: false }
+            fields:
+              - label: Column title
+                name: label
+                widget: string
+              - label: Highlighted column (light background, orange time)
+                name: highlight
+                widget: boolean
+                required: false
+              - label: Rows
+                name: rows
+                widget: list
+                fields:
+                  - label: Volume (e.g. Up to 300 photos)
+                    name: volume
+                    widget: string
+                  - label: Time (e.g. up to 3 days)
+                    name: time
+                    widget: string
+                summary: "{{fields.volume}} — {{fields.time}}"
+            summary: "{{fields.label}}"
+            min: 2
+            max: 2
+          - label: Notes (with check marks)
+            name: notes
+            widget: list
+            field:
+              label: Item
+              name: item
+              widget: string
+          - label: Rush orders (red banner)
+            name: rush
+            widget: text
+      - name: booking
+        label: How to book
+        format: json
+        file: src/content/uk/booking.json
+        fields:
+          - label: Subtitle (sticker on the banner)
+            name: subtitle
+            widget: string
+          - label: Three steps
+            name: steps
+            widget: list
+            field:
+              label: Item
+              name: item
+              widget: string
+            min: 3
+            max: 3
+          - label: Label above the example
+            name: exampleLabel
+            widget: string
+          - label: Example (speech bubble)
+            name: example
+            widget: text
+          - label: Result (next to the example)
+            name: result
+            widget: text
+          - label: “Important” block
+            name: important
+            widget: object
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: text
+                widget: text
+              - label: Warning (red)
+                name: warning
+                widget: text
+              - label: Closing text
+                name: closing
+                widget: text
+              - label: Call to action
+                name: cta
+                widget: string
+      - name: steps
+        label: How to start (steps)
+        format: json
+        file: src/content/uk/steps.json
+        fields:
+          - label: Steps
+            name: items
+            widget: list
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: text
+                widget: text
+            summary: "{{fields.title}}"
+      - name: portfolio
+        label: Portfolio images
+        format: json
+        file: src/content/uk/portfolio.json
+        fields:
+          - label: Before / after pairs
+            name: beforeAfter
+            widget: list
+            fields:
+              - label: Before photo
+                name: before
+                widget: image
+              - label: After photo
+                name: after
+                widget: image
+              - label: Short description (for screen readers)
+                name: alt
+                widget: string
+                required: false
+          - label: Gallery photos
+            name: gallery
+            widget: list
+            fields:
+              - label: Photo
+                name: src
+                widget: image
+              - label: Short description (for screen readers)
+                name: alt
+                widget: string
+            hint: The first 6 photos are also used in the collage at the top of the page.
+      - name: ui
+        label: Interface texts (titles, buttons, form)
+        format: json
+        file: src/i18n/ui.uk.json
+        fields:
+          - label: Translation needs review
+            name: _needsReview
+            widget: boolean
+            required: false
+          - label: Language code
+            name: lang
+            widget: hidden
+            default: uk
+          - label: Browser tab and search results
+            name: meta
+            widget: object
+            fields:
+              - label: Page title
+                name: title
+                widget: string
+              - label: Page description
+                name: description
+                widget: text
+          - label: Menu
+            name: nav
+            widget: object
+            fields:
+              - label: Prices
+                name: prices
+                widget: string
+              - label: Turnaround
+                name: terms
+                widget: string
+              - label: Booking
+                name: booking
+                widget: string
+              - label: How to start
+                name: start
+                widget: string
+              - label: Contact
+                name: contact
+                widget: string
+          - label: Buttons
+            name: cta
+            widget: object
+            fields:
+              - label: See prices
+                name: prices
+                widget: string
+              - label: Send a request
+                name: request
+                widget: string
+              - label: More works
+                name: more
+                widget: string
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - label: Caption of the portrait placeholder
+                name: portrait
+                widget: string
+          - label: Portfolio section
+            name: portfolio
+            widget: object
+            fields:
+              - label: Label above the title
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Hint under the title
+                name: hint
+                widget: string
+              - label: “Before” label
+                name: before
+                widget: string
+              - label: “After” label
+                name: after
+                widget: string
+          - label: Section titles
+            name: sections
+            widget: object
+            fields:
+              - label: Prices
+                name: prices
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Color correction heading
+                    name: color
+                    widget: string
+                  - label: Skin retouching heading
+                    name: skin
+                    widget: string
+                  - label: “per photo” text
+                    name: perPhoto
+                    widget: string
+              - label: Turnaround
+                name: terms
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+              - label: Booking
+                name: booking
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+              - label: How to start
+                name: start
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+              - label: Contact
+                name: contact
+                widget: object
+                fields:
+                  - label: Label above the title
+                    name: eyebrow
+                    widget: string
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Text under the title
+                    name: text
+                    widget: text
+          - label: Contact form
+            name: form
+            widget: object
+            fields:
+              - label: Name label
+                name: name
+                widget: string
+              - label: Email label
+                name: email
+                widget: string
+              - label: Instagram label
+                name: instagram
+                widget: string
+              - label: Instagram placeholder
+                name: instagramHint
+                widget: string
+              - label: “I need” label
+                name: need
+                widget: string
+              - label: “I need” options
+                name: options
+                widget: list
+                field:
+                  label: Item
+                  name: item
+                  widget: string
+              - label: Number of photos label
+                name: count
+                widget: string
+              - label: Message label
+                name: message
+                widget: string
+              - label: “Required” label
+                name: required
+                widget: string
+              - label: Error messages
+                name: errors
+                widget: object
+                fields:
+                  - label: Invalid email
+                    name: email
+                    widget: string
+                  - label: Missing Instagram
+                    name: instagram
+                    widget: string
+                  - label: Missing name
+                    name: name
+                    widget: string
+              - label: Send button
+                name: send
+                widget: string
+              - label: Consent text
+                name: consent
+                widget: text
+              - label: Privacy policy link text
+                name: privacy
+                widget: string
+              - label: “Thank you” title
+                name: thanksTitle
+                widget: string
+              - label: “Thank you” text
+                name: thanksText
+                widget: string
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - label: Copyright line
+                name: copyright
+                widget: string
+          - label: Language switcher
+            name: langSwitcher
+            widget: object
+            fields:
+              - label: Accessible label
+                name: label
+                widget: string
+              - label: English
+                name: en
+                widget: string
+              - label: Ukrainian
+                name: uk
+                widget: string

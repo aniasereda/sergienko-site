@@ -1,7 +1,24 @@
-[
-  { "title": "Write to me", "text": "Fill in the form below or send a DM: what you need, how many photos and when." },
-  { "title": "Send your photos", "text": "A link via Google Drive, Dropbox or WeTransfer. Color: RAW files. Skin retouching: JPEG or TIFF. From 10 photos. Please add references." },
-  { "title": "Approve the result", "text": "For color I make several options and you choose. For retouching I do one test photo. If you have your own style, send a catalog with key edited photos. No free tests for a whole series." },
-  { "title": "Payment", "text": "Once approved, you get a payment link or bank details. I work officially." },
-  { "title": "Your finished photos", "text": "After payment I edit the whole series and deliver it within the agreed time." }
-]
+{
+  "items": [
+    {
+      "title": "Write to me",
+      "text": "Fill in the form below or send a DM: what you need, how many photos and when."
+    },
+    {
+      "title": "Send your photos",
+      "text": "A link via Google Drive, Dropbox or WeTransfer. Color: RAW files. Skin retouching: JPEG or TIFF. From 10 photos. Please add references."
+    },
+    {
+      "title": "Approve the result",
+      "text": "For color I make several options and you choose. For retouching I do one test photo. If you have your own style, send a catalog with key edited photos. No free tests for a whole series."
+    },
+    {
+      "title": "Payment",
+      "text": "Once approved, you get a payment link or bank details. I work officially."
+    },
+    {
+      "title": "Your finished photos",
+      "text": "After payment I edit the whole series and deliver it within the agreed time."
+    }
+  ]
+}
