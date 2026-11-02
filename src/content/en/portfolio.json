@@ -1,6 +1,11 @@
 {
   "beforeAfter": [
-    { "before": "/images/before-1.jpg", "after": "/images/after-1.jpg", "alt": "color correction" }
+    {
+      "before": "/images/ba/before.webp",
+      "after": "/images/ba/after.webp",
+      "beforeAlt": "Original photo before editing: warm yellow cast",
+      "afterAlt": "Photo after color correction and retouching: neutral color"
+    }
   ],
   "gallery": [
     { "src": "/images/work-1.jpg", "alt": "Wedding photo" },

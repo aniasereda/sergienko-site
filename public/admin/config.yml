@@ -207,10 +207,12 @@ collections:
               - label: After photo
                 name: after
                 widget: image
-              - label: Short description (for screen readers)
-                name: alt
+              - label: Description of the “before” photo (for screen readers)
+                name: beforeAlt
                 widget: string
-                required: false
+              - label: Description of the “after” photo (for screen readers)
+                name: afterAlt
+                widget: string
           - label: Gallery photos
             name: gallery
             widget: list
@@ -640,10 +642,12 @@ collections:
               - label: After photo
                 name: after
                 widget: image
-              - label: Short description (for screen readers)
-                name: alt
+              - label: Description of the “before” photo (for screen readers)
+                name: beforeAlt
                 widget: string
-                required: false
+              - label: Description of the “after” photo (for screen readers)
+                name: afterAlt
+                widget: string
           - label: Gallery photos
             name: gallery
             widget: list
