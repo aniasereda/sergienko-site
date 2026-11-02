@@ -228,9 +228,9 @@ html:has(dialog[open]) { overflow: hidden; }
   .sticker, .sticker--light { transform: none; }
   .banner { min-height: 240px; }
   .banner h2 { font-size: 38px; }
-  .flow { gap: 36px; }
+  .flow { gap: 12px; }
   .flow__step { min-height: 0; }
-  .flow__arrow { right: auto; left: 40px; top: auto; bottom: -34px; transform: rotate(90deg); }
+  .flow__arrow { display: none; }
   .terms-time { font-size: 28px; }
   .important h3 { font-size: 20px; }
 }
