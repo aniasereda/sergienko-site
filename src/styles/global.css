@@ -24,8 +24,7 @@ a { color: inherit; }
 
 h1, h2, h3, h4 { overflow-wrap: break-word; hyphens: auto; font-family: var(--sans); font-weight: 700; line-height: 1.1; margin: 0 0 16px; letter-spacing: -.01em; }
 h1 { font-size: 68px; }
-h2 { font-size: 48px; text-transform: lowercase; margin-bottom: 20px; }
-h2.keep-case { text-transform: none; }
+h2 { font-size: 48px; margin-bottom: 20px; }
 h3 { font-size: 26px; font-weight: 600; }
 h4 { font-size: 22px; font-weight: 600; }
 mark { hyphens: none; background: var(--accent); color: var(--text); padding: 0 .18em; border-radius: .22em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
