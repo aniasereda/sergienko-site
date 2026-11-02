@@ -25,3 +25,12 @@ export const paths: Record<Lang, string> = { en: '/', uk: '/uk/' };
 export function getData(lang: Lang) {
   return data[lang];
 }
+
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/** Highlights the last word of a section title (one word only, per the design). */
+export function markLast(title: string): string {
+  const i = title.lastIndexOf(' ');
+  if (i < 0) return `<mark>${esc(title)}</mark>`;
+  return `${esc(title.slice(0, i))} <mark>${esc(title.slice(i + 1))}</mark>`;
+}

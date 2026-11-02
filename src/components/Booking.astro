@@ -1,39 +1,49 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import { getData } from '../i18n/utils';
+import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { ui, booking } = getData(lang);
 const t = ui.sections.booking;
 const imp = booking.important;
+const hasBanner = fs.existsSync(path.join(process.cwd(), 'public/images/booking.jpg'));
+const stepIcons = ['calendar', 'clock', 'send'];
 ---
 <section class="section" id="booking">
   <div class="container">
-    <p class="eyebrow">{t.eyebrow}</p>
-    <h2>{t.title}</h2>
-    <p class="lead">{booking.subtitle}</p>
+    <div class={`banner${hasBanner ? '' : ' banner--ph'}`}>
+      {hasBanner && <img src="/images/booking.jpg" alt="" class="banner__img" loading="lazy" />}
+      <div class="banner__in">
+        <h2>{t.title}</h2>
+        <p class="sticker sticker--light">{booking.subtitle}</p>
+      </div>
+    </div>
 
     <ol class="flow">
       {booking.steps.map((s, i) => (
         <li class="flow__step">
-          <span class="flow__n">{i + 1}</span>
+          <span class="badge"><Icon name={stepIcons[i]} /><i class="badge__n">{i + 1}</i></span>
           <span>{s}</span>
+          {i < booking.steps.length - 1 && <span class="flow__arrow badge badge--sm"><Icon name="arrow-right" /></span>}
         </li>
       ))}
     </ol>
 
-    <div class="grid-2 booking__row">
+    <div class="booking__row">
       <div>
         <p class="mini">{booking.exampleLabel}</p>
         <p class="bubble">{booking.example}</p>
       </div>
-      <p class="result">{booking.result}</p>
+      <p class="result"><span class="badge badge--sm"><Icon name="arrow-right" /></span><span>{booking.result}</span></p>
     </div>
 
     <div class="card important">
       <h3>{imp.title}</h3>
       <p>{imp.text}</p>
-      <p class="warning">{imp.warning}</p>
+      <p class="warning"><span class="badge badge--sm badge--alert"><Icon name="alert" /></span><span>{imp.warning}</span></p>
       <p>{imp.closing}</p>
-      <p class="important__cta"><strong>{imp.cta}</strong></p>
+      <p class="important__cta"><span class="badge"><Icon name="calendar" /></span><strong>{imp.cta}</strong></p>
     </div>
   </div>
 </section>

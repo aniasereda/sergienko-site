@@ -1,33 +1,38 @@
 ---
-import { getData } from '../i18n/utils';
+import { getData, markLast } from '../i18n/utils';
+import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { ui, turnaround } = getData(lang);
 const t = ui.sections.terms;
 ---
-<section class="section section--tint" id="terms">
+<section class="section" id="terms">
   <div class="container">
-    <p class="eyebrow">{t.eyebrow}</p>
-    <h2>{t.title}</h2>
+    <p class="sticker">{t.eyebrow}</p>
+    <h2 set:html={markLast(t.title)} />
 
-    <div class="grid-2">
-      {turnaround.groups.map((g) => (
-        <article class={`card terms-card${g.highlight ? ' terms-card--hl' : ''}`}>
-          <h3>{g.label}</h3>
-          <ul class="terms-rows">
-            {g.rows.map((r) => (
-              <li>
-                <span class="terms-volume">{r.volume}</span>
-                <span class="terms-time">{r.time}</span>
-              </li>
-            ))}
-          </ul>
-        </article>
-      ))}
+    <div class="frame">
+      <div class="grid-2 terms">
+        {turnaround.groups.map((g) => (
+          <article class={`card terms-card${g.highlight ? ' terms-card--hl' : ''}`}>
+            <h3><span class="badge"><Icon name={g.highlight ? 'calendar' : 'clock'} /></span>{g.label}</h3>
+            <ul class="terms-rows">
+              {g.rows.map((r) => (
+                <li>
+                  <span class="terms-volume">{r.volume}</span>
+                  <span class="terms-time">{r.time}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <ul class="notes">
+        {turnaround.notes.map((n) => (
+          <li><span class="badge badge--sm"><Icon name="check" /></span><span>{n}</span></li>
+        ))}
+      </ul>
+      <p class="alert"><span class="badge badge--sm badge--white"><Icon name="alert" /></span><span>{turnaround.rush}</span></p>
     </div>
-
-    <ul class="notes">
-      {turnaround.notes.map((n) => <li>{n}</li>)}
-    </ul>
-    <p class="rush">{turnaround.rush}</p>
   </div>
 </section>

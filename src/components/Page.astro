@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from './Header.astro';
 import Hero from './Hero.astro';
+import Portfolio from './Portfolio.astro';
 import Prices from './Prices.astro';
 import Terms from './Terms.astro';
 import Booking from './Booking.astro';
@@ -14,6 +15,7 @@ const { lang } = Astro.props;
   <Header lang={lang} />
   <main>
     <Hero lang={lang} />
+    <Portfolio lang={lang} />
     <Prices lang={lang} />
     <Terms lang={lang} />
     <Booking lang={lang} />

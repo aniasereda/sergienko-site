@@ -1,23 +1,32 @@
 ---
 import { getData } from '../i18n/utils';
 import Photo from './Photo.astro';
+import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { site, ui, portfolio } = getData(lang);
 const g = portfolio.gallery;
 const tiles = Array.from({ length: 6 }, (_, i) => g[i % g.length]);
 const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
+const dirIcons = ['heart', 'home', 'camera'];
 ---
 <section class="hero" id="top">
   <div class="container hero__in">
     <div class="hero__text">
-      <p class="eyebrow">{site.role}</p>
+      <p class="sticker">{site.role}</p>
       <h1>{site.name}</h1>
       <p class="hero__tag">{site.tagline.join(' ')}</p>
-      <p class="hero__intro">{site.intro}</p>
-      <p class="hero__dirs">{site.directions.join(' · ')}</p>
+      <div class="hero__about">
+        <Photo src="/images/victoria.jpg" alt={ui.hero.portrait} class="portrait" />
+        <p class="hero__intro">{site.intro}</p>
+      </div>
+      <ul class="dirs">
+        {site.directions.map((d, i) => (
+          <li><span class="badge"><Icon name={dirIcons[i] ?? 'camera'} /></span>{d}</li>
+        ))}
+      </ul>
       <div class="btns">
-        <a class="btn" href="#price">{ui.cta.prices}</a>
-        <a class="btn btn--ghost" href="#contact">{ui.cta.request}</a>
+        <a class="btn" href="#contact">{ui.cta.request}</a>
+        <a class="btn btn--ghost" href="#price">{ui.cta.prices}</a>
       </div>
     </div>
     <div class="collage">

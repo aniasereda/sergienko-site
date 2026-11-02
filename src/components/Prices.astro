@@ -1,26 +1,27 @@
 ---
-import { getData } from '../i18n/utils';
+import { getData, markLast } from '../i18n/utils';
+import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { ui, prices } = getData(lang);
 const t = ui.sections.prices;
 const groups = [
-  { title: t.color, items: prices.color, cols: 3 },
-  { title: t.skin, items: prices.skin, cols: 2 },
+  { title: t.color, items: prices.color, cols: 3, icon: 'palette' },
+  { title: t.skin, items: prices.skin, cols: 2, icon: 'wand' },
 ];
 ---
 <section class="section" id="price">
   <div class="container">
-    <p class="eyebrow">{t.eyebrow}</p>
-    <h2>{t.title}</h2>
+    <p class="sticker">{t.eyebrow}</p>
+    <h2 set:html={markLast(t.title)} />
 
     {groups.map((g) => (
       <>
-        <h3 class="group-title">{g.title}</h3>
+        <h3 class="group-title"><span class="badge"><Icon name={g.icon} /></span>{g.title}</h3>
         <div class={`grid grid--${g.cols}`}>
           {g.items.map((it) => (
             <article class="card price-card">
               <h4>{it.name}</h4>
-              <p class="price">{it.price}<span> {t.perPhoto}</span></p>
+              <p class="price"><b>{it.price}</b><span>{t.perPhoto}</span></p>
               <p class="muted">{it.text}</p>
             </article>
           ))}

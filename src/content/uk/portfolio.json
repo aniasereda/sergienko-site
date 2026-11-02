@@ -1,4 +1,7 @@
 {
+  "beforeAfter": [
+    { "before": "/images/before-1.jpg", "after": "/images/after-1.jpg", "alt": "кольорокорекція" }
+  ],
   "gallery": [
     { "src": "/images/work-1.jpg", "alt": "Весільне фото" },
     { "src": "/images/work-2.jpg", "alt": "Портрет" },

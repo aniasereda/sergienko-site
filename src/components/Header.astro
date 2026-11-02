@@ -1,5 +1,6 @@
 ---
 import { getData, paths } from '../i18n/utils';
+import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { site, ui } = getData(lang);
 const sw = ui.langSwitcher;
@@ -22,7 +23,7 @@ const sw = ui.langSwitcher;
           <li>
             <a href={paths[l]} lang={l} hreflang={l} aria-current={l === lang ? 'true' : undefined}>
               <span>{sw[l]}</span>
-              {l === lang && <b aria-hidden="true">✓</b>}
+              {l === lang && <b><Icon name="check" /></b>}
             </a>
           </li>
         ))}
@@ -33,6 +34,18 @@ const sw = ui.langSwitcher;
 </header>
 
 <script>
+  // mark the nav link of the section currently in view
+  const navLinks = [...document.querySelectorAll<HTMLAnchorElement>('.nav a')];
+  const byId = new Map(navLinks.map((a) => [a.hash.slice(1), a]));
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      navLinks.forEach((a) => a.removeAttribute('aria-current'));
+      byId.get(e.target.id)?.setAttribute('aria-current', 'true');
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  byId.forEach((_, id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+
   document.querySelectorAll<HTMLElement>('[data-lang]').forEach((root) => {
     const btn = root.querySelector('button')!;
     const menu = root.querySelector<HTMLElement>('.lang__menu')!;

@@ -1,18 +1,23 @@
 ---
-import { getData } from '../i18n/utils';
+import { getData, markLast } from '../i18n/utils';
+import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { ui, steps } = getData(lang);
 const t = ui.sections.start;
+const icons = ['message', 'image', 'check', 'wallet', 'gift'];
 ---
-<section class="section section--tint" id="start">
+<section class="section" id="start">
   <div class="container">
-    <p class="eyebrow">{t.eyebrow}</p>
-    <h2>{t.title}</h2>
+    <p class="sticker">{t.eyebrow}</p>
+    <h2 set:html={markLast(t.title)} />
     <ol class="start">
-      {steps.map((s) => (
+      {steps.map((s, i) => (
         <li>
-          <h4>{s.title}</h4>
-          <p>{s.text}</p>
+          <span class="badge"><Icon name={icons[i] ?? 'check'} /><i class="badge__n">{i + 1}</i></span>
+          <div>
+            <h4>{s.title}</h4>
+            <p>{s.text}</p>
+          </div>
         </li>
       ))}
     </ol>
