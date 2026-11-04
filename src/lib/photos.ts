@@ -1,6 +1,8 @@
 import { getImage } from 'astro:assets';
+import gallery from '../content/gallery.json';
 
-// Every image dropped into public/images/portfolio/ shows up on the site, sorted by file name.
+// The gallery is managed in src/content/gallery.json (admin: "Gallery"): order, which photos exist, which are "featured" on the home page.
+// Files live in public/images/portfolio/.
 // (separate patterns: a brace pattern chokes on file names like "photo (1).png"; glob arguments must be literals)
 const files = import.meta.glob<ImageMetadata>(
   ['/public/images/portfolio/*.png', '/public/images/portfolio/*.jpg', '/public/images/portfolio/*.jpeg', '/public/images/portfolio/*.webp'],
@@ -14,12 +16,26 @@ async function webp(img: ImageMetadata, width: number, quality: number): Promise
   return { src: out.src, width: out.options.width as number, height: out.options.height as number };
 }
 
-let cache: Promise<{ thumb: Pic; full: Pic }[]> | undefined;
+export type Photo = { thumb: Pic; full: Pic; featured: boolean };
+
+let cache: Promise<Photo[]> | undefined;
 export function loadPortfolio() {
   cache ??= Promise.all(
-    Object.entries(files)
-      .sort(([a], [b]) => a.localeCompare(b, 'en', { numeric: true }))
-      .map(async ([, img]) => ({ thumb: await webp(img, 700, 80), full: await webp(img, 1600, 82) })),
+    gallery.photos.flatMap(({ image, featured }) => {
+      const img = files['/public' + image] ?? files['/public' + decodeURI(image)];
+      if (!img) {
+        console.warn(`[gallery] file not found, skipped: ${image}`);
+        return [];
+      }
+      return [(async () => ({ thumb: await webp(img, 700, 80), full: await webp(img, 1600, 82), featured: !!featured }))()];
+    }),
   );
   return cache;
+}
+
+// Photos for the hero collage: the ones marked "featured" (max 6); if none are marked, the first 6.
+export async function loadFeatured() {
+  const all = await loadPortfolio();
+  const featured = all.filter((p) => p.featured);
+  return (featured.length ? featured : all).slice(0, 6);
 }

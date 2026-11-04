@@ -1,10 +1,10 @@
 ---
 import { getData } from '../i18n/utils';
-import { loadPortfolio } from '../lib/photos';
+import { loadFeatured } from '../lib/photos';
 import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { site, ui } = getData(lang);
-const tiles = (await loadPortfolio()).slice(0, 6);
+const tiles = await loadFeatured();
 const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
 const dirIcons = ['heart', 'home', 'camera'];
 ---

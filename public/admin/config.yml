@@ -6,6 +6,31 @@ publish_mode: simple
 media_folder: public/images
 public_folder: /images
 collections:
+  - name: shared
+    label: Gallery (both languages)
+    files:
+      - name: gallery
+        label: Portfolio gallery
+        format: json
+        file: src/content/gallery.json
+        fields:
+          - label: Photos (drag to reorder; add new ones with the button below)
+            name: photos
+            widget: list
+            fields:
+              - label: Photo
+                name: image
+                widget: image
+                media_folder: /public/images/portfolio
+                public_folder: /images/portfolio
+              - label: Show on the home page (top of the page, max 6)
+                name: featured
+                widget: boolean
+                required: false
+                default: false
+            summary: "{{fields.featured}} {{fields.image}}"
+            label_singular: photo
+            add_to: bottom
   - name: en
     label: English
     files:
