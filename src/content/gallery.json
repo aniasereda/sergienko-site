@@ -1,28 +1,30 @@
 {
   "photos": [
     {
-      "image": "/images/portfolio/6967d933ccc870888b8d8b29_optimized_930 (1).png",
-      "featured": true
+      "image": "/images/portfolio/6967d933ccc870888b8d8b29_optimized_930 (1).png"
     },
     {
-      "image": "/images/portfolio/6967da048bd7a01b03cc1f44_optimized_930.png",
-      "featured": true
+      "image": "/images/portfolio/6967da048bd7a01b03cc1f44_optimized_930.png"
     },
     {
-      "image": "/images/portfolio/6968db883155352d4986870a_optimized_1019.png",
-      "featured": true
+      "image": "/images/portfolio/6968db883155352d4986870a_optimized_1019.png"
     },
     {
-      "image": "/images/portfolio/6968dbc76482debfa0c6bde4_optimized_931.png",
-      "featured": true
+      "image": "/images/portfolio/6968dbc76482debfa0c6bde4_optimized_931.png"
     },
     {
-      "image": "/images/portfolio/6968dc4f3155352d49868a6f_optimized_931.png",
-      "featured": true
+      "image": "/images/portfolio/6968dc4f3155352d49868a6f_optimized_931.png"
     },
     {
-      "image": "/images/portfolio/6968dcc93155352d49868c2e_optimized_931.png",
-      "featured": true
+      "image": "/images/portfolio/6968dcc93155352d49868c2e_optimized_931.png"
     }
+  ],
+  "featured": [
+    "/images/portfolio/6967d933ccc870888b8d8b29_optimized_930 (1).png",
+    "/images/portfolio/6967da048bd7a01b03cc1f44_optimized_930.png",
+    "/images/portfolio/6968db883155352d4986870a_optimized_1019.png",
+    "/images/portfolio/6968dbc76482debfa0c6bde4_optimized_931.png",
+    "/images/portfolio/6968dc4f3155352d49868a6f_optimized_931.png",
+    "/images/portfolio/6968dcc93155352d49868c2e_optimized_931.png"
   ]
 }
