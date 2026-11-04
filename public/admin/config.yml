@@ -23,24 +23,14 @@ collections:
                 widget: image
                 media_folder: /public/images/portfolio
                 public_folder: /images/portfolio
-            summary: "{{fields.image}}"
+              - label: Show on the home page (top of the page, max 6)
+                name: featured
+                widget: boolean
+                required: false
+                default: false
+            summary: "{{fields.featured}} {{fields.image}}"
             label_singular: photo
             add_to: bottom
-          - label: Photos on the home page (max 6, in this order)
-            name: featured
-            widget: relation
-            collection: shared
-            file: gallery
-            value_field: photos.*.image
-            search_fields:
-              - photos.*.image
-            display_fields:
-              - photos.*.image
-            multiple: true
-            min: 0
-            max: 6
-            required: false
-            hint: Pick up to 6 photos from the gallery above. Save the gallery first if you just added new photos. Once 6 are chosen, no more can be added; remove one to pick another.
   - name: en
     label: English
     files:
