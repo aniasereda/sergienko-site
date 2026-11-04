@@ -1,8 +1,16 @@
 {
   "name": "Victoria Sergienko",
   "role": "A professional retoucher",
-  "tagline": ["Clean color.", "Consistent results.", "Confidence in every series."],
-  "directions": ["Wedding", "Family", "Personal photoshoots"],
+  "tagline": [
+    "Clean color. (тест)",
+    "Consistent results.",
+    "Confidence in every series."
+  ],
+  "directions": [
+    "Wedding",
+    "Family",
+    "Personal photoshoots"
+  ],
   "minPhotos": 10,
   "social": {
     "instagram": "https://www.instagram.com/viktoria.touch/",
