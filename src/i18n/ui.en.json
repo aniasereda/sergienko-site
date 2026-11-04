@@ -6,7 +6,6 @@
   },
   "nav": { "prices": "Prices", "terms": "Turnaround", "booking": "Booking", "start": "How to start", "contact": "Contact" },
   "cta": { "prices": "See prices", "request": "Send a request", "more": "More works" },
-  "hero": { "portrait": "[Photo of Victoria]" },
   "portfolio": { "eyebrow": "Portfolio", "title": "See the difference", "hint": "Drag the slider to compare before and after.", "before": "Before", "after": "After", "photoAlt": "Portfolio photo", "open": "Open photo", "close": "Close", "prev": "Previous photo", "next": "Next photo" },
   "sections": {
     "prices": { "eyebrow": "Price", "title": "Clear prices per photo", "color": "Color correction", "skin": "Skin retouching", "perPhoto": "/ photo" },

@@ -27,9 +27,6 @@ collections:
               label: Item
               name: item
               widget: string
-          - label: Intro text next to the portrait
-            name: intro
-            widget: text
           - label: Directions of work (shown in one line)
             name: directions
             widget: list
@@ -264,13 +261,6 @@ collections:
               - label: More works
                 name: more
                 widget: string
-          - label: Hero
-            name: hero
-            widget: object
-            fields:
-              - label: Caption of the portrait placeholder
-                name: portrait
-                widget: string
           - label: Portfolio section
             name: portfolio
             widget: object
@@ -475,9 +465,6 @@ collections:
               label: Item
               name: item
               widget: string
-          - label: Intro text next to the portrait
-            name: intro
-            widget: text
           - label: Directions of work (shown in one line)
             name: directions
             widget: list
@@ -706,13 +693,6 @@ collections:
                 widget: string
               - label: More works
                 name: more
-                widget: string
-          - label: Hero
-            name: hero
-            widget: object
-            fields:
-              - label: Caption of the portrait placeholder
-                name: portrait
                 widget: string
           - label: Portfolio section
             name: portfolio
