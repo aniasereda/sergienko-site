@@ -1,24 +1,14 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
-import sharp from 'sharp';
 import { getData, markLast } from '../i18n/utils';
-import { loadPortfolio } from '../lib/photos';
-import Photo from './Photo.astro';
+import { loadPairs } from '../lib/ba';
 import Icon from './Icon.astro';
 const { lang } = Astro.props;
-const { ui, site, portfolio } = getData(lang);
+const { ui } = getData(lang);
 const t = ui.portfolio;
-const photos = await loadPortfolio();
-
-// real size of the photo, so the slider keeps its proportions and the page doesn't jump while loading
-async function size(src: string) {
-  const file = path.join(process.cwd(), 'public', src);
-  if (!fs.existsSync(file)) return { width: 3, height: 2 };
-  const { width, height } = await sharp(file).metadata();
-  return { width: width!, height: height! };
-}
-const pairs = await Promise.all(portfolio.beforeAfter.map(async (p) => ({ ...p, ...(await size(p.before)) })));
+const pairs = await loadPairs();
+const VISIBLE = 6;
+const fill = (s: string, n: number) => s.replace('{n}', String(n));
+const sizes = '(min-width: 901px) 360px, (min-width: 601px) 45vw, 90vw';
 ---
 <section class="section" id="portfolio">
   <div class="container">
@@ -26,32 +16,42 @@ const pairs = await Promise.all(portfolio.beforeAfter.map(async (p) => ({ ...p, 
     <h2 set:html={markLast(t.title)} />
     <p class="lead">{t.hint}</p>
 
-    {pairs.map((p) => (
-      <div class="ba" data-ba style={`--w:${p.width};--h:${p.height}`}>
-        <Photo src={p.before} alt={p.beforeAlt} class="ba__img" width={p.width} height={p.height} />
-        <div class="ba__after"><Photo src={p.after} alt={p.afterAlt} class="ba__img" width={p.width} height={p.height} /></div>
-        <span class="ba__tag ba__tag--l" aria-hidden="true">{t.before}</span>
-        <span class="ba__tag ba__tag--r" aria-hidden="true">{t.after}</span>
-        <div class="ba__line"></div>
-        <input type="range" min="0" max="100" step="1" value="50" aria-label={`${t.before} / ${t.after}`} />
-      </div>
-    ))}
+    <div class="pairs" id="pairs" data-pairs data-more={t.showMore} data-less={t.showLess}>
+      {pairs.map((p, i) => (
+        <button
+          type="button"
+          class="pair"
+          hidden={i >= VISIBLE}
+          data-i={i}
+          data-bf={p.beforeFull.src} data-bw={p.beforeFull.width} data-bh={p.beforeFull.height}
+          data-af={p.afterFull.src} data-aw={p.afterFull.width} data-ah={p.afterFull.height}
+          data-n={p.n}
+          aria-label={fill(t.pairLabel, p.n)}
+        >
+          <span class="pair__side">
+            <img src={p.before.src} srcset={p.before.srcset} sizes={sizes} width={p.before.width} height={p.before.height} alt={fill(t.beforeAlt, p.n)} loading="lazy" decoding="async" draggable="false" />
+            <span class="pair__tag" aria-hidden="true">{t.before}</span>
+          </span>
+          <span class="pair__side">
+            <img src={p.after.src} srcset={p.after.srcset} sizes={sizes} width={p.after.width} height={p.after.height} alt={fill(t.afterAlt, p.n)} loading="lazy" decoding="async" draggable="false" />
+            <span class="pair__tag" aria-hidden="true">{t.after}</span>
+          </span>
+        </button>
+      ))}
+    </div>
 
-    {photos.length > 0 && (
-      <div class="gallery" data-gallery>
-        {photos.map((p, i) => (
-          <button class="gallery__item" type="button" data-full={p.full.src} data-w={p.full.width} data-h={p.full.height} aria-label={`${t.open} ${i + 1}`}>
-            <img src={p.thumb.src} width={p.thumb.width} height={p.thumb.height} alt={`${t.photoAlt} ${i + 1}`} loading="lazy" decoding="async" draggable="false" />
-          </button>
-        ))}
-      </div>
+    {pairs.length > VISIBLE && (
+      <p class="center"><button type="button" class="btn btn--ghost" data-toggle aria-expanded="false" aria-controls="pairs">{t.showMore}</button></p>
     )}
   </div>
 
-  {photos.length > 0 && (
-    <dialog class="lb" id="lightbox" aria-label={t.photoAlt}>
+  {pairs.length > 0 && (
+    <dialog class="lb" id="lightbox" aria-label={t.title}>
       <div class="lb__stage" data-stage>
-        <img class="lb__img" alt="" />
+        <div class="lb__pair">
+          <figure class="lb__fig"><img class="lb__img" data-img="b" alt="" /><span class="pair__tag" aria-hidden="true">{t.before}</span></figure>
+          <figure class="lb__fig"><img class="lb__img" data-img="a" alt="" /><span class="pair__tag" aria-hidden="true">{t.after}</span></figure>
+        </div>
       </div>
       <button class="lb__btn lb__close" type="button" data-close aria-label={t.close}><Icon name="x" /></button>
       <button class="lb__btn lb__prev" type="button" data-prev aria-label={t.prev}><Icon name="chevron-left" /></button>
@@ -62,48 +62,60 @@ const pairs = await Promise.all(portfolio.beforeAfter.map(async (p) => ({ ...p, 
 </section>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((el) => {
-    const input = el.querySelector('input')!;
-    const update = () => el.style.setProperty('--pos', input.value + '%');
-    input.addEventListener('input', update);
-    update();
-  });
+  const grid = document.querySelector<HTMLElement>('[data-pairs]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-toggle]');
+  const items = grid ? [...grid.querySelectorAll<HTMLButtonElement>('.pair')] : [];
 
-  const gallery = document.querySelector<HTMLElement>('[data-gallery]');
+  // show more / less
+  if (grid && toggle) {
+    const extra = items.slice(6);
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      extra.forEach((el) => { el.hidden = !open; });
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? grid.dataset.less! : grid.dataset.more!;
+      if (!open) {
+        const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.getElementById('portfolio')!.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  // lightbox: both photos of a pair, arrows switch pairs
   const dlg = document.getElementById('lightbox') as HTMLDialogElement | null;
-  if (gallery && dlg) {
-    const items = [...gallery.querySelectorAll<HTMLButtonElement>('.gallery__item')];
-    const img = dlg.querySelector<HTMLImageElement>('.lb__img')!;
+  if (dlg && items.length) {
+    const imgB = dlg.querySelector<HTMLImageElement>('[data-img="b"]')!;
+    const imgA = dlg.querySelector<HTMLImageElement>('[data-img="a"]')!;
     const count = dlg.querySelector<HTMLElement>('[data-count]')!;
     let cur = 0;
 
+    const fill = (img: HTMLImageElement, src: string, w: string, h: string, alt: string) => {
+      img.src = src; img.width = Number(w); img.height = Number(h); img.alt = alt;
+    };
     const show = (i: number) => {
       cur = (i + items.length) % items.length;
-      const b = items[cur];
-      img.src = b.dataset.full!;
-      img.width = Number(b.dataset.w);
-      img.height = Number(b.dataset.h);
-      img.alt = b.querySelector('img')!.alt;
+      const d = items[cur].dataset;
+      const [alts] = [items[cur].querySelectorAll('img')];
+      fill(imgB, d.bf!, d.bw!, d.bh!, alts[0].alt);
+      fill(imgA, d.af!, d.aw!, d.ah!, alts[1].alt);
       count.textContent = `${cur + 1} / ${items.length}`;
-      // warm the neighbours so arrows feel instant
-      [cur - 1, cur + 1].forEach((n) => { new Image().src = items[(n + items.length) % items.length].dataset.full!; });
+      [cur - 1, cur + 1].forEach((n) => {
+        const nd = items[(n + items.length) % items.length].dataset;
+        new Image().src = nd.bf!; new Image().src = nd.af!;
+      });
     };
-    const open = (i: number) => { show(i); dlg.showModal(); };
-
-    items.forEach((b, i) => b.addEventListener('click', () => open(i)));
+    items.forEach((b, i) => b.addEventListener('click', () => { show(i); dlg.showModal(); }));
     dlg.querySelector('[data-close]')!.addEventListener('click', () => dlg.close());
     dlg.querySelector('[data-prev]')!.addEventListener('click', () => show(cur - 1));
     dlg.querySelector('[data-next]')!.addEventListener('click', () => show(cur + 1));
-    // click on the dark area (not on the photo or a button) closes
     dlg.addEventListener('click', (e) => {
       const t = e.target as HTMLElement;
-      if (t === dlg || t.hasAttribute('data-stage')) dlg.close();
+      if (t === dlg || t.hasAttribute('data-stage') || t.classList.contains('lb__pair')) dlg.close();
     });
     dlg.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') show(cur - 1);
       if (e.key === 'ArrowRight') show(cur + 1);
     });
-    // swipe on touch screens
     let x0 = 0;
     dlg.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
     dlg.addEventListener('touchend', (e) => {

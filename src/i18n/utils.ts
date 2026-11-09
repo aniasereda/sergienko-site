@@ -5,19 +5,17 @@ import enPrices from '../content/en/prices.json';
 import enTurnaround from '../content/en/turnaround.json';
 import enBooking from '../content/en/booking.json';
 import enSteps from '../content/en/steps.json';
-import enPortfolio from '../content/en/portfolio.json';
 import ukSite from '../content/uk/site.json';
 import ukPrices from '../content/uk/prices.json';
 import ukTurnaround from '../content/uk/turnaround.json';
 import ukBooking from '../content/uk/booking.json';
 import ukSteps from '../content/uk/steps.json';
-import ukPortfolio from '../content/uk/portfolio.json';
 
 export type Lang = 'en' | 'uk';
 
 const data = {
-  en: { ui: enUi, site: enSite, prices: enPrices, turnaround: enTurnaround, booking: enBooking, steps: enSteps.items, portfolio: enPortfolio },
-  uk: { ui: ukUi, site: ukSite, prices: ukPrices, turnaround: ukTurnaround, booking: ukBooking, steps: ukSteps.items, portfolio: ukPortfolio },
+  en: { ui: enUi, site: enSite, prices: enPrices, turnaround: enTurnaround, booking: enBooking, steps: enSteps.items },
+  uk: { ui: ukUi, site: ukSite, prices: ukPrices, turnaround: ukTurnaround, booking: ukBooking, steps: ukSteps.items },
 };
 
 export const paths: Record<Lang, string> = { en: '/', uk: '/uk/' };

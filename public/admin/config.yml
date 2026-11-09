@@ -226,27 +226,6 @@ collections:
                 name: text
                 widget: text
             summary: "{{fields.title}}"
-      - name: portfolio
-        label: Before / after slider
-        format: json
-        file: src/content/en/portfolio.json
-        fields:
-          - label: Before / after pairs
-            name: beforeAfter
-            widget: list
-            fields:
-              - label: Before photo
-                name: before
-                widget: image
-              - label: After photo
-                name: after
-                widget: image
-              - label: Description of the “before” photo (for screen readers)
-                name: beforeAlt
-                widget: string
-              - label: Description of the “after” photo (for screen readers)
-                name: afterAlt
-                widget: string
       - name: ui
         label: Interface texts (titles, buttons, form)
         format: json
@@ -305,7 +284,7 @@ collections:
               - label: Title
                 name: title
                 widget: string
-              - label: Hint under the title
+              - label: Short text under the title
                 name: hint
                 widget: string
               - label: “Before” label
@@ -314,11 +293,20 @@ collections:
               - label: “After” label
                 name: after
                 widget: string
-              - label: Gallery photo description (number is added)
-                name: photoAlt
+              - label: “Before” photo description (use {n} for the photo number)
+                name: beforeAlt
                 widget: string
-              - label: “Open photo” label
-                name: open
+              - label: “After” photo description (use {n} for the photo number)
+                name: afterAlt
+                widget: string
+              - label: Pair button description for screen readers (use {n})
+                name: pairLabel
+                widget: string
+              - label: “Show more” button
+                name: showMore
+                widget: string
+              - label: “Show less” button
+                name: showLess
                 widget: string
               - label: “Close” label
                 name: close
@@ -655,27 +643,6 @@ collections:
                 name: text
                 widget: text
             summary: "{{fields.title}}"
-      - name: portfolio
-        label: Before / after slider
-        format: json
-        file: src/content/uk/portfolio.json
-        fields:
-          - label: Before / after pairs
-            name: beforeAfter
-            widget: list
-            fields:
-              - label: Before photo
-                name: before
-                widget: image
-              - label: After photo
-                name: after
-                widget: image
-              - label: Description of the “before” photo (for screen readers)
-                name: beforeAlt
-                widget: string
-              - label: Description of the “after” photo (for screen readers)
-                name: afterAlt
-                widget: string
       - name: ui
         label: Interface texts (titles, buttons, form)
         format: json
@@ -738,7 +705,7 @@ collections:
               - label: Title
                 name: title
                 widget: string
-              - label: Hint under the title
+              - label: Short text under the title
                 name: hint
                 widget: string
               - label: “Before” label
@@ -747,11 +714,20 @@ collections:
               - label: “After” label
                 name: after
                 widget: string
-              - label: Gallery photo description (number is added)
-                name: photoAlt
+              - label: “Before” photo description (use {n} for the photo number)
+                name: beforeAlt
                 widget: string
-              - label: “Open photo” label
-                name: open
+              - label: “After” photo description (use {n} for the photo number)
+                name: afterAlt
+                widget: string
+              - label: Pair button description for screen readers (use {n})
+                name: pairLabel
+                widget: string
+              - label: “Show more” button
+                name: showMore
+                widget: string
+              - label: “Show less” button
+                name: showLess
                 widget: string
               - label: “Close” label
                 name: close
