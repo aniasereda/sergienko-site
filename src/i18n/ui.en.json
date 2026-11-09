@@ -5,6 +5,7 @@
     "description": "Color correction and skin retouching for wedding, family and personal photoshoots. Clean color, consistent results, confidence in every series."
   },
   "nav": { "prices": "Prices", "terms": "Turnaround", "booking": "Booking", "start": "How to start", "contact": "Contact" },
+  "notFound": { "title": "Page not found", "text": "This page does not exist or has moved.", "home": "Go to the home page" },
   "navMobile": { "prices": "Price", "booking": "How to book", "bookingShort": "Booking", "portfolio": "Portfolio" },
   "cta": { "prices": "See prices", "request": "Send a request" },
   "portfolio": { "eyebrow": "Portfolio", "title": "See the difference", "hint": "Original on the left, edited on the right. Tap a pair to view it larger.", "before": "Before", "after": "After", "beforeAlt": "Before, photo {n}", "afterAlt": "After, photo {n}", "pairLabel": "Open photo {n}: before and after", "showMore": "Show more", "showLess": "Show less", "close": "Close", "prev": "Previous photo", "next": "Next photo" },

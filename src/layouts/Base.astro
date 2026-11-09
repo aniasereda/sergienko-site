@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { getData, paths } from '../i18n/utils';
 const { lang = 'en' } = Astro.props;
 const { ui } = getData(lang);
+const ogImage = new URL('/og.jpg', Astro.site).href;
 const url = (l: string) => new URL(paths[l as 'en' | 'uk'], Astro.site).href;
 ---
 <!doctype html>
@@ -12,6 +13,18 @@ const url = (l: string) => new URL(paths[l as 'en' | 'uk'], Astro.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={ui.meta.description} />
     <title>{ui.meta.title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="sergienko.space" />
+    <meta property="og:title" content={ui.meta.title} />
+    <meta property="og:description" content={ui.meta.description} />
+    <meta property="og:url" content={url(lang)} />
+    <meta property="og:locale" content={lang === 'uk' ? 'uk_UA' : 'en_US'} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="canonical" href={url(lang)} />
     <link rel="alternate" hreflang="en" href={url('en')} />
     <link rel="alternate" hreflang="uk" href={url('uk')} />

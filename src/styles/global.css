@@ -285,3 +285,9 @@ html:has(dialog[open]) { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* 404 */
+.nf { min-height: 70vh; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; text-align: center; }
+.nf h1 { font-size: 44px; margin-bottom: 12px; }
+.nf p { margin: 0 0 24px; color: var(--text-muted); }
+@media (max-width: 900px) { .nf { grid-template-columns: 1fr; gap: 56px; padding-top: 56px; padding-bottom: 56px; } }

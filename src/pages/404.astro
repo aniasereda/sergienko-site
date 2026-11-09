@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { getData, paths } from '../i18n/utils';
+const langs = ['en', 'uk'] as const;
+---
+<Base lang="en">
+  <main class="container nf">
+    {langs.map((l) => {
+      const { ui } = getData(l);
+      return (
+        <section class="nf__col" lang={l}>
+          <h1>{ui.notFound.title}</h1>
+          <p>{ui.notFound.text}</p>
+          <a class="btn" href={paths[l]}>{ui.notFound.home}</a>
+        </section>
+      );
+    })}
+  </main>
+</Base>
