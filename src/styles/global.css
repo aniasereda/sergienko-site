@@ -196,6 +196,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .flow__step { position: relative; display: flex; align-items: center; gap: 16px; min-height: 96px; padding: 20px 24px; background: var(--sand); color: var(--charcoal); border: 1px solid var(--hairline); border-radius: 12px; font-weight: 500; }
 .flow__arrow { position: absolute; right: -36px; top: 50%; transform: translateY(-50%); z-index: 1; }
 .result .badge { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
+#start .badge, .flow__step .badge, .important .badge:not(.badge--alert) { background: var(--card); }
 .flow__arrow.badge { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
 .booking__row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; margin-top: 40px; }
 .bubble { position: relative; display: inline-block; margin: 0 0 14px; padding: 18px 26px; background: var(--sand); color: var(--charcoal); border-radius: 12px 12px 12px 2px; font-size: 18px; }
