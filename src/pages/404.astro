@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { getData, paths } from '../i18n/utils';
 const langs = ['en', 'uk'] as const;
 ---
-<Base lang="en">
+<Base lang="en" noindex>
   <main class="container nf">
     {langs.map((l) => {
       const { ui } = getData(l);

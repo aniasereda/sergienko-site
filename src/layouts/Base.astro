@@ -4,7 +4,11 @@ import { getData, paths } from '../i18n/utils';
 const { lang = 'en', noindex = false } = Astro.props;
 const { ui } = getData(lang);
 const ogImage = new URL('/og.jpg', Astro.site).href;
-const url = (l: string) => new URL(paths[l as 'en' | 'uk'], Astro.site).href;
+// each page points to itself (canonical) and to its twin in the other language (hreflang)
+const twins = /privacy-policy\/?$/.test(Astro.url.pathname)
+  ? { en: '/privacy-policy/', uk: '/uk/privacy-policy/' }
+  : paths;
+const url = (l: string) => new URL(twins[l as 'en' | 'uk'], Astro.site).href;
 ---
 <!doctype html>
 <html lang={ui.lang}>
@@ -15,7 +19,7 @@ const url = (l: string) => new URL(paths[l as 'en' | 'uk'], Astro.site).href;
     <title>{ui.meta.title}</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="sergienko.space" />
+    <meta property="og:site_name" content="vikaretoucher.win" />
     <meta property="og:title" content={ui.meta.title} />
     <meta property="og:description" content={ui.meta.description} />
     <meta property="og:url" content={url(lang)} />

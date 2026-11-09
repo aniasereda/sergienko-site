@@ -1,4 +1,4 @@
-# PROJECT: sergienko.space — redesign
+# PROJECT: vikaretoucher.win — redesign
 
 Professional retoucher Victoria Sergienko (wedding, family, personal photoshoots).
 Replace the slow WordPress/Elementor site with a fast static site and a simple admin the owner can use without a developer.
@@ -69,7 +69,7 @@ Accessibility: real `<button>` for accordion with `aria-expanded`, labels on all
 
 ## Page structure (single page, in this order)
 
-1. **Header** (sticky): brand “Victoria Sergienko”, links Prices (#price), How it works (#process), Portfolio (#portfolio), FAQ (#faq), UK (https://www.sergienko.space/uk/vs/ for now), button “Send photos” (#contact).
+1. **Header** (sticky): brand “Victoria Sergienko”, links Prices (#price), How it works (#process), Portfolio (#portfolio), FAQ (#faq), UK (https://vikaretoucher.win/uk/vs/ for now), button “Send photos” (#contact).
 2. **Hero**: eyebrow “A professional retoucher”, h1 “Victoria Sergienko”, italic line “Clean color. Consistent results. Confidence in every series.”, text “I help photographers increase their income without burning out. Wedding, family and personal photoshoots.” Buttons “See prices” and “Send photos”. Facts: “7+ years of experience”, “Color 1–5 days”, “Retouching 1–3 days”. Right side: collage of 6 portfolio photos in 3 columns, middle column shifted down 40px.
 3. **Directions and services**: two cards. Directions of my work: Wedding photoshoots, Family photoshoots, Personal photoshoots. Services: Color correction, Skin retouching, Packages (color correction + skin retouching).
 4. **Prices** (#price): intro “I have an individual approach for each client, so the final cost is determined personally. The minimum order is 10 photos.” Group “Color correction” (3 cards) and “Skin retouching” (2 cards) from `prices.json`. Then two cards: “What affects the final price” and “Packages: color + skin” with button “Send photos for a quote”.
@@ -77,7 +77,7 @@ Accessibility: real `<button>` for accordion with `aria-expanded`, labels on all
 6. **Portfolio** (#portfolio): before/after slider (range input over two stacked images, clip-path), 6-photo grid, button “More works” (later: a full gallery page).
 7. **FAQ** (#faq): accordion from `faq.json`, first item open.
 8. **Contact** (#contact, dark band): left text and social links, right form card: Name, Instagram or email, I need (select), Number of photos (min. 10), Message, consent text with privacy link, Send. After sending, show “Thank you!”. (Form is UI only until Phase 4.)
-9. **Footer**: copyright and Privacy policy link (https://www.sergienko.space/privacy%20policy/).
+9. **Footer**: copyright and Privacy policy link (https://vikaretoucher.win/privacy%20policy/).
 
 ## Content files
 
@@ -224,7 +224,7 @@ Section intro for the process block: “I know how difficult it can be to trust 
     { "src": "/images/work-1.jpg", "alt": "Wedding photo" },
     { "src": "/images/work-2.jpg", "alt": "Portrait" }
   ],
-  "moreWorksUrl": "https://www.sergienko.space/portfolio"
+  "moreWorksUrl": "https://vikaretoucher.win/portfolio"
 }
 ```
 
