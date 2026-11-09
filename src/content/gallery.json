@@ -1,32 +1,64 @@
 {
   "photos": [
     {
-      "image": "/images/portfolio/6967d933ccc870888b8d8b29_optimized_930 (1).png",
+      "image": "/images/portfolio/20220726-IMG_9296.jpg",
       "featured": true
     },
     {
-      "image": "/images/portfolio/6967da048bd7a01b03cc1f44_optimized_930.png",
+      "image": "/images/portfolio/CR5_5870.jpg",
       "featured": true
     },
     {
-      "image": "/images/portfolio/6968db883155352d4986870a_optimized_1019.png",
+      "image": "/images/portfolio/IMG_0760.jpg",
       "featured": true
     },
     {
-      "image": "/images/portfolio/6968dbc76482debfa0c6bde4_optimized_931.png",
+      "image": "/images/portfolio/IMG_1563.jpg",
       "featured": true
     },
     {
-      "image": "/images/portfolio/6968dc4f3155352d49868a6f_optimized_931.png",
+      "image": "/images/portfolio/IMG_1885.jpg",
       "featured": true
     },
     {
-      "image": "/images/portfolio/6968dcc93155352d49868c2e_optimized_931.png",
+      "image": "/images/portfolio/IMG_3421.jpg",
+      "featured": true
+    },
+    {
+      "image": "/images/portfolio/IMG_5579.jpg",
       "featured": false
     },
     {
-      "image": "/images/portfolio/IMG_9571.jpg",
-      "featured": true
+      "image": "/images/portfolio/IMG_6864.jpg",
+      "featured": false
+    },
+    {
+      "image": "/images/portfolio/IMG_6918.jpg",
+      "featured": false
+    },
+    {
+      "image": "/images/portfolio/IMG_7432.jpg",
+      "featured": false
+    },
+    {
+      "image": "/images/portfolio/IMG_7513.jpg",
+      "featured": false
+    },
+    {
+      "image": "/images/portfolio/IMG_7716.jpg",
+      "featured": false
+    },
+    {
+      "image": "/images/portfolio/IMG_8334.jpg",
+      "featured": false
+    },
+    {
+      "image": "/images/portfolio/IMG_8415.jpg",
+      "featured": false
+    },
+    {
+      "image": "/images/portfolio/IMG_8483.jpg",
+      "featured": false
     }
   ]
 }
