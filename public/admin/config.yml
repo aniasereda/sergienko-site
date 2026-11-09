@@ -433,6 +433,21 @@ collections:
                   - label: Missing name
                     name: name
                     widget: string
+                  - label: Too few photos
+                    name: count
+                    widget: string
+                  - label: Message too long
+                    name: message
+                    widget: string
+              - label: “Sending…” text on the button
+                name: sending
+                widget: string
+              - label: Text when sending fails
+                name: sendError
+                widget: string
+              - label: Fallback link text (goes to Instagram)
+                name: fallback
+                widget: string
               - label: Send button
                 name: send
                 widget: string
@@ -854,6 +869,21 @@ collections:
                   - label: Missing name
                     name: name
                     widget: string
+                  - label: Too few photos
+                    name: count
+                    widget: string
+                  - label: Message too long
+                    name: message
+                    widget: string
+              - label: “Sending…” text on the button
+                name: sending
+                widget: string
+              - label: Text when sending fails
+                name: sendError
+                widget: string
+              - label: Fallback link text (goes to Instagram)
+                name: fallback
+                widget: string
               - label: Send button
                 name: send
                 widget: string

@@ -301,3 +301,11 @@ html:has(dialog[open]) { overflow: hidden; }
 .legal__body p, .legal__body li { color: var(--text-muted); }
 .legal__body a { color: var(--mocha-deep); }
 @media (max-width: 600px) { .legal h1 { font-size: 36px; } .legal__body h2 { font-size: 28px; } }
+
+/* contact form: honeypot (off-screen, not display:none so bots still see it) and server error box */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-error { margin: 0 0 16px; padding: 14px 16px; border-radius: 12px; background: var(--sand); color: var(--charcoal); font-size: 14px; font-weight: 500; }
+.form-error[hidden] { display: none; }
+.form-error p { margin: 0 0 6px; }
+.form-error p:last-child { margin: 0; }
+.form-error a { color: var(--mocha-deep); font-weight: 600; }

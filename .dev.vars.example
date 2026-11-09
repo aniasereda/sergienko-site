@@ -1,0 +1,4 @@
+# Copy this file to .dev.vars and fill in the values. .dev.vars is NOT committed.
+TELEGRAM_BOT_TOKEN=
+# One chat id, or several separated by commas: 111111111,222222222
+TELEGRAM_CHAT_ID=
