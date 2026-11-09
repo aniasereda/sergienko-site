@@ -14,7 +14,7 @@ const f = ui.form;
       <p class="lead">{t.text}</p>
       <ul class="social">
         {Object.entries(site.social).map(([name, url]) => (
-          <li><a href={url as string} target="_blank" rel="noopener"><span class="badge badge--light badge--sm"><Icon name={name} /></span>{name}</a></li>
+          <li><a href={url as string} target="_blank" rel="noopener"><span class="badge badge--sm"><Icon name={name} /></span>{name}</a></li>
         ))}
       </ul>
     </div>
