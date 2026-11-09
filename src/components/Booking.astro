@@ -10,7 +10,7 @@ const imp = booking.important;
 const hasBanner = fs.existsSync(path.join(process.cwd(), 'public/images/booking.jpg'));
 const stepIcons = ['calendar', 'clock', 'send'];
 ---
-<section class="section dark" id="booking">
+<section class="section" id="booking">
   <div class="container">
     <div class={`banner${hasBanner ? '' : ' banner--ph'}`}>
       {hasBanner && <img src="/images/booking.jpg" alt="" class="banner__img" loading="lazy" />}

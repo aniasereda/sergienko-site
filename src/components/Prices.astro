@@ -17,12 +17,26 @@ const groups = [
     {groups.map((g) => (
       <>
         <h3 class="group-title"><span class="badge"><Icon name={g.icon} /></span>{g.title}</h3>
-        <div class={`grid grid--${g.cols}`}>
+        <div class={`grid grid--${g.cols} price-grid`}>
           {g.items.map((it) => (
             <article class="card price-card">
               <h4>{it.name}</h4>
               <p class="price"><b>{it.price}</b><span>{t.perPhoto}</span></p>
-              <p class="muted">{it.text}</p>
+              <p class="price-lead">{it.lead}</p>
+              <div class="price-lists">
+                <p class="price-list__title">{t.included}</p>
+                <ul class="price-list price-list--yes">
+                  {it.included.map((x) => <li>{x}</li>)}
+                </ul>
+                {it.notIncluded.length > 0 && (
+                  <>
+                    <p class="price-list__title">{t.notIncluded}</p>
+                    <ul class="price-list price-list--no">
+                      {it.notIncluded.map((x) => <li>{x}</li>)}
+                    </ul>
+                  </>
+                )}
+              </div>
             </article>
           ))}
         </div>

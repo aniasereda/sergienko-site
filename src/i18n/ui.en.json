@@ -8,7 +8,7 @@
   "cta": { "prices": "See prices", "request": "Send a request" },
   "portfolio": { "eyebrow": "Portfolio", "title": "See the difference", "hint": "Drag the slider to compare before and after.", "before": "Before", "after": "After", "photoAlt": "Portfolio photo", "open": "Open photo", "close": "Close", "prev": "Previous photo", "next": "Next photo" },
   "sections": {
-    "prices": { "eyebrow": "Price", "title": "Clear prices per photo", "color": "Color correction", "skin": "Skin retouching", "perPhoto": "/ photo" },
+    "prices": { "eyebrow": "Price", "title": "Clear prices per photo", "color": "Color correction", "skin": "Skin retouching", "perPhoto": "/ photo", "included": "Included", "notIncluded": "Not included" },
     "terms": { "eyebrow": "Turnaround", "title": "Turnaround times" },
     "booking": { "eyebrow": "Booking", "title": "How to book" },
     "start": { "eyebrow": "Start", "title": "How to start working together" },

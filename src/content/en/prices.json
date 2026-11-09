@@ -1,12 +1,70 @@
 {
   "color": [
-    { "name": "Your Color", "price": "$0.40", "text": "Your preset or Lightroom catalog, applied consistently to the whole series." },
-    { "name": "Custom Color", "price": "$0.50", "text": "I create the color for your series from scratch, based on your references and light." },
-    { "name": "Color with Masks", "price": "$0.70", "text": "Lightroom masks for local color and light corrections. Color only, no skin retouching." }
+    {
+      "name": "Your Color",
+      "price": "$0.40",
+      "lead": "You provide your own preset or Lightroom catalog with your color. Best if you already have your editing style and only need it applied consistently across the whole gallery.",
+      "included": [
+        "Applying your preset or color",
+        "Straightening horizons",
+        "Removing small unwanted elements (when possible in Lightroom)",
+        "Keeping your style consistent throughout the gallery"
+      ],
+      "notIncluded": ["Creating a new color style", "Local adjustments with masks"]
+    },
+    {
+      "name": "Custom Color",
+      "price": "$0.50",
+      "lead": "Perfect if you don’t have your own preset or want me to create the best color for your gallery based on your references and lighting conditions.",
+      "included": [
+        "Everything in Your Color",
+        "Creating a custom color from scratch",
+        "Matching the color across the entire gallery",
+        "A consistent and natural look"
+      ],
+      "notIncluded": ["Lightroom masks"]
+    },
+    {
+      "name": "Color with Masks",
+      "price": "$0.70",
+      "lead": "Used whenever Lightroom masks are required for color correction. Color only, it does not include skin retouching.",
+      "included": [
+        "Everything in Your Color or Custom Color",
+        "Local color adjustments with masks, as needed for each image",
+        "Brightening or darkening specific areas",
+        "Balancing uneven lighting",
+        "Correcting skin tones in selected areas",
+        "Emphasizing the main subject"
+      ],
+      "notIncluded": ["Skin retouching"]
+    }
   ],
   "skin": [
-    { "name": "Basic Retouch", "price": "$3", "text": "Quick, natural cleanup: blemishes, stray hairs, subtle Liquify." },
-    { "name": "Detailed Retouch", "price": "from $7*", "text": "Frequency Separation, Dodge & Burn, hair and clothes cleanup, natural skin texture." }
+    {
+      "name": "Basic Retouch",
+      "price": "$3",
+      "lead": "Ideal for quick, natural cleanup.",
+      "included": [
+        "Removing pimples and temporary blemishes",
+        "Removing stray hairs",
+        "Light skin cleanup",
+        "Subtle Liquify (body shaping)"
+      ],
+      "notIncluded": []
+    },
+    {
+      "name": "Detailed Retouch",
+      "price": "from $7*",
+      "lead": "Perfect for images that require a more detailed and refined retouch. The final price depends on the complexity of the image and the desired level of retouching.",
+      "included": [
+        "Frequency Separation",
+        "Dodge & Burn",
+        "Detailed skin retouching",
+        "Advanced cleanup",
+        "Natural-looking results that preserve skin texture"
+      ],
+      "notIncluded": []
+    }
   ],
   "factors": "The final price depends on complexity, number of people in the frame, skin condition and RAW quality.",
   "note": "* The exact amount is confirmed once I see the full scope. Minimum order: 10 photos."
