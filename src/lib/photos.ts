@@ -1,7 +1,7 @@
 import { getImage } from 'astro:assets';
 import gallery from '../content/gallery.json';
 
-// The gallery is managed in src/content/gallery.json (admin: "Gallery"): order, which photos exist, which are "featured" on the home page.
+// The home page photo row is managed in src/content/gallery.json (admin: "Home page photos").
 // Files live in public/images/portfolio/.
 // (separate patterns: a brace pattern chokes on file names like "photo (1).png"; glob arguments must be literals)
 const files = import.meta.glob<ImageMetadata>(
@@ -17,7 +17,7 @@ async function webp(img: ImageMetadata, width: number, quality: number): Promise
 }
 
 export type Tile = Pic & { srcset: string };
-export type Photo = { thumb: Pic; full: Pic; tile: Tile; featured: boolean };
+export type Photo = { thumb: Pic; full: Pic; tile: Tile };
 
 // hero row: 600 px wide, srcset up to 900 px
 async function tile(img: ImageMetadata): Promise<Tile> {
@@ -28,21 +28,19 @@ async function tile(img: ImageMetadata): Promise<Tile> {
 let cache: Promise<Photo[]> | undefined;
 export function loadPortfolio() {
   cache ??= Promise.all(
-    gallery.photos.flatMap(({ image, featured }) => {
+    gallery.photos.flatMap(({ image }) => {
       const img = files['/public' + image] ?? files['/public' + decodeURI(image)];
       if (!img) {
         console.warn(`[gallery] file not found, skipped: ${image}`);
         return [];
       }
-      return [(async () => ({ thumb: await webp(img, 700, 80), full: await webp(img, 1600, 82), tile: await tile(img), featured: !!featured }))()];
+      return [(async () => ({ thumb: await webp(img, 700, 80), full: await webp(img, 1600, 82), tile: await tile(img) }))()];
     }),
   );
   return cache;
 }
 
-// Photos for the hero collage: the ones marked "featured" (max 6); if none are marked, the first 6.
+// Photos for the hero row: the first 6 of the list in src/content/gallery.json (admin: "Home page photos").
 export async function loadFeatured() {
-  const all = await loadPortfolio();
-  const featured = all.filter((p) => p.featured);
-  return (featured.length ? featured : all).slice(0, 6);
+  return (await loadPortfolio()).slice(0, 6);
 }

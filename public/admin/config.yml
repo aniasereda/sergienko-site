@@ -7,30 +7,26 @@ media_folder: public/images
 public_folder: /images
 collections:
   - name: shared
-    label: Gallery (both languages)
+    label: Home page photos
     files:
       - name: gallery
-        label: Portfolio gallery
+        label: Photo row at the top of the home page
         format: json
         file: src/content/gallery.json
         fields:
-          - label: Photos (drag to reorder; add new ones with the button below)
+          - label: "Photos (exactly 6 — click a photo to replace it, drag to reorder)"
             name: photos
             widget: list
+            min: 6
+            max: 6
             fields:
-              - label: Photo
+              - label: Photo (tall photos work best, the frame is 2:3)
                 name: image
                 widget: image
                 media_folder: /public/images/portfolio
                 public_folder: /images/portfolio
-              - label: Show on the home page (photo row at the top, max 6)
-                name: featured
-                widget: boolean
-                required: false
-                default: false
-            summary: "{{fields.featured}} {{fields.image}}"
+            summary: "{{fields.image}}"
             label_singular: photo
-            add_to: bottom
   - name: en
     label: English
     files:
