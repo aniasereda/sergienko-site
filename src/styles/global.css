@@ -164,7 +164,7 @@ html:has(dialog[open]) { overflow: hidden; }
 
 /* terms */
 .frame { padding: 28px; border: 1px solid var(--hairline); border-radius: 12px; }
-.terms-card { background: var(--sand); border-color: var(--hairline); }
+.terms-card { background: color-mix(in srgb, var(--sand) 50%, var(--card)); border-color: var(--hairline); }
 .terms-card--hl { background: var(--card); border-color: var(--mocha); }
 .terms-card h3 { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-family: var(--font-sans); font-size: 20px; font-weight: 500; }
 .terms-card--hl h3 { color: var(--mocha-deep); }
@@ -193,6 +193,8 @@ html:has(dialog[open]) { overflow: hidden; }
 .flow { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 .flow__step { position: relative; display: flex; align-items: center; gap: 16px; min-height: 96px; padding: 20px 24px; background: var(--sand); color: var(--charcoal); border: 1px solid var(--hairline); border-radius: 12px; font-weight: 500; }
 .flow__arrow { position: absolute; right: -36px; top: 50%; transform: translateY(-50%); z-index: 1; }
+.result .badge { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
+.flow__arrow.badge { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
 .booking__row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; margin-top: 40px; }
 .bubble { position: relative; display: inline-block; margin: 0 0 14px; padding: 18px 26px; background: var(--sand); color: var(--charcoal); border-radius: 12px 12px 12px 2px; font-size: 18px; }
 .bubble::after { content: ''; position: absolute; left: 14px; bottom: -14px; border: 8px solid transparent; border-top-color: var(--sand); border-left-color: var(--sand); }
