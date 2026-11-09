@@ -14,6 +14,11 @@ const sw = ui.langSwitcher;
       <a href="#booking">{ui.nav.booking}</a>
       <a href="#start">{ui.nav.start}</a>
     </nav>
+    <nav class="nav-m" aria-label={ui.nav.prices}>
+      <a href="#price">{ui.navMobile.prices}</a>
+      <a href="#booking"><span class="nav-m__full">{ui.navMobile.booking}</span><span class="nav-m__short">{ui.navMobile.bookingShort}</span></a>
+      <a href="#portfolio">{ui.navMobile.portfolio}</a>
+    </nav>
     <div class="lang" data-lang>
       <button class="lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label={`${sw.label}: ${sw[lang]}`}>
         <span>{lang.toUpperCase()}</span><i aria-hidden="true"></i>
@@ -35,13 +40,14 @@ const sw = ui.langSwitcher;
 
 <script>
   // mark the nav link of the section currently in view
-  const navLinks = [...document.querySelectorAll<HTMLAnchorElement>('.nav a')];
-  const byId = new Map(navLinks.map((a) => [a.hash.slice(1), a]));
+  const navLinks = [...document.querySelectorAll<HTMLAnchorElement>('.nav a, .nav-m a')];
+  const byId = new Map<string, HTMLAnchorElement[]>();
+  navLinks.forEach((a) => byId.set(a.hash.slice(1), [...(byId.get(a.hash.slice(1)) ?? []), a]));
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
       navLinks.forEach((a) => a.removeAttribute('aria-current'));
-      byId.get(e.target.id)?.setAttribute('aria-current', 'true');
+      byId.get(e.target.id)?.forEach((a) => a.setAttribute('aria-current', 'true'));
     });
   }, { rootMargin: '-40% 0px -55% 0px' });
   byId.forEach((_, id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
