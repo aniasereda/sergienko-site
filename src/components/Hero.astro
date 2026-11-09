@@ -7,8 +7,10 @@ const tiles = await loadFeatured();
 ---
 <section class="hero" id="top">
   <div class="hero__band">
-    <h1>{site.name}</h1>
-    <p class="hero__role">{site.role}</p>
+    <div class="container">
+      <h1>{site.name}</h1>
+      <p class="hero__role">{site.role}</p>
+    </div>
   </div>
 
   {tiles.length > 0 && (

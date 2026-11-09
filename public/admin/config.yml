@@ -23,7 +23,7 @@ collections:
                 widget: image
                 media_folder: /public/images/portfolio
                 public_folder: /images/portfolio
-              - label: Show on the home page (top of the page, max 6)
+              - label: Show on the home page (photo row at the top, max 6)
                 name: featured
                 widget: boolean
                 required: false
@@ -39,20 +39,20 @@ collections:
         format: json
         file: src/content/en/site.json
         fields:
-          - label: Name
+          - label: Name (big text at the top, shown in capital letters)
             name: name
             widget: string
-          - label: Role (small text above the name)
+          - label: Role (italic line under the name)
             name: role
             widget: string
-          - label: Tagline (three short phrases)
+          - label: Tagline (three short phrases, each on its own line under the photos)
             name: tagline
             widget: list
             field:
               label: Item
               name: item
               widget: string
-          - label: Directions of work (shown in one line)
+          - label: Directions of work (shown in one line with “ · ” between)
             name: directions
             widget: list
             field:
@@ -480,20 +480,20 @@ collections:
         format: json
         file: src/content/uk/site.json
         fields:
-          - label: Name
+          - label: Name (big text at the top, shown in capital letters)
             name: name
             widget: string
-          - label: Role (small text above the name)
+          - label: Role (italic line under the name)
             name: role
             widget: string
-          - label: Tagline (three short phrases)
+          - label: Tagline (three short phrases, each on its own line under the photos)
             name: tagline
             widget: list
             field:
               label: Item
               name: item
               widget: string
-          - label: Directions of work (shown in one line)
+          - label: Directions of work (shown in one line with “ · ” between)
             name: directions
             widget: list
             field:
