@@ -3,6 +3,7 @@
   "name": "sergienko-site",
   "main": "worker/index.ts",
   "compatibility_date": "2026-11-09",
+  "keep_vars": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
