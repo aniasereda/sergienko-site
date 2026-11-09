@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { getData, paths } from '../i18n/utils';
-const { lang = 'en' } = Astro.props;
+const { lang = 'en', noindex = false } = Astro.props;
 const { ui } = getData(lang);
 const ogImage = new URL('/og.jpg', Astro.site).href;
 const url = (l: string) => new URL(paths[l as 'en' | 'uk'], Astro.site).href;
@@ -25,6 +25,7 @@ const url = (l: string) => new URL(paths[l as 'en' | 'uk'], Astro.site).href;
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={url(lang)} />
     <link rel="alternate" hreflang="en" href={url('en')} />
     <link rel="alternate" hreflang="uk" href={url('uk')} />

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { getData, paths } from '../i18n/utils';
+import enPrivacy from '../content/en/privacy.json';
+import ukPrivacy from '../content/uk/privacy.json';
+const { lang } = Astro.props;
+const { ui, site } = getData(lang);
+const body = (lang === 'uk' ? ukPrivacy : enPrivacy).body;
+---
+<Base lang={lang} noindex={!body}>
+  <header class="header">
+    <div class="container header__in">
+      <a class="brand" href={paths[lang]}>{site.name}</a>
+      <a class="btn btn--sm" href={paths[lang]}>{ui.notFound.home}</a>
+    </div>
+  </header>
+  <main class="container legal">
+    <h1>{ui.form.privacy}</h1>
+    <div class="legal__body" set:html={body} />
+  </main>
+</Base>
