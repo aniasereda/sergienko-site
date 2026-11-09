@@ -1,37 +1,34 @@
 ---
 import { getData } from '../i18n/utils';
 import { loadFeatured } from '../lib/photos';
-import Icon from './Icon.astro';
 const { lang } = Astro.props;
 const { site, ui } = getData(lang);
 const tiles = await loadFeatured();
-const cols = [0, 1, 2].map((c) => tiles.slice(c * 2, c * 2 + 2));
-const dirIcons = ['heart', 'home', 'camera'];
 ---
 <section class="hero" id="top">
-  <div class="container hero__in">
-    <div class="hero__text">
-      <p class="sticker">{site.role}</p>
-      <h1>{site.name}</h1>
-      <p class="hero__tag">{site.tagline.join(' ')}</p>
-      <ul class="dirs">
-        {site.directions.map((d, i) => (
-          <li><span class="badge"><Icon name={dirIcons[i] ?? 'camera'} /></span>{d}</li>
-        ))}
-      </ul>
-      <div class="btns">
-        <a class="btn" href="#contact">{ui.cta.request}</a>
-        <a class="btn btn--ghost" href="#price">{ui.cta.prices}</a>
-      </div>
+  <div class="hero__band">
+    <h1>{site.name}</h1>
+    <p class="hero__role">{site.role}</p>
+  </div>
+
+  {tiles.length > 0 && (
+    <div class="container hero__photos">
+      {tiles.map((p, i) => (
+        <img
+          src={p.tile.src} srcset={p.tile.srcset} sizes="(min-width: 901px) 180px, 30vw"
+          width={p.tile.width} height={p.tile.height} alt=""
+          loading={i < 3 ? 'eager' : 'lazy'} fetchpriority={i < 3 ? 'high' : undefined} decoding="async"
+        />
+      ))}
     </div>
-    {tiles.length > 0 && (
-      <div class="collage">
-        {cols.map((col) => (
-          <div class="collage__col">
-            {col.map((p) => <img class="collage__img" src={p.thumb.src} width={p.thumb.width} height={p.thumb.height} alt="" loading="lazy" decoding="async" />)}
-          </div>
-        ))}
-      </div>
-    )}
+  )}
+
+  <div class="container hero__bottom">
+    <p class="hero__tag">{site.tagline.map((l) => <span>{l}</span>)}</p>
+    <div class="hero__btns">
+      <a class="btn" href="#price">{ui.cta.prices}</a>
+      <a class="btn btn--ghost" href="#contact">{ui.cta.request}</a>
+    </div>
+    <p class="hero__dirs">{site.directions.join(' · ')}</p>
   </div>
 </section>

@@ -16,7 +16,14 @@ async function webp(img: ImageMetadata, width: number, quality: number): Promise
   return { src: out.src, width: out.options.width as number, height: out.options.height as number };
 }
 
-export type Photo = { thumb: Pic; full: Pic; featured: boolean };
+export type Tile = Pic & { srcset: string };
+export type Photo = { thumb: Pic; full: Pic; tile: Tile; featured: boolean };
+
+// hero row: 600 px wide, srcset up to 900 px
+async function tile(img: ImageMetadata): Promise<Tile> {
+  const [s, l] = await Promise.all([webp(img, 600, 80), webp(img, 900, 80)]);
+  return { ...s, srcset: `${s.src} ${s.width}w, ${l.src} ${l.width}w` };
+}
 
 let cache: Promise<Photo[]> | undefined;
 export function loadPortfolio() {
@@ -27,7 +34,7 @@ export function loadPortfolio() {
         console.warn(`[gallery] file not found, skipped: ${image}`);
         return [];
       }
-      return [(async () => ({ thumb: await webp(img, 700, 80), full: await webp(img, 1600, 82), featured: !!featured }))()];
+      return [(async () => ({ thumb: await webp(img, 700, 80), full: await webp(img, 1600, 82), tile: await tile(img), featured: !!featured }))()];
     }),
   );
   return cache;
