@@ -46,7 +46,7 @@ function originAllowed(origin: string | null) {
 }
 
 const kyivTime = () =>
-  new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', dateStyle: 'medium', timeStyle: 'short', hourCycle: 'h23' }).format(new Date());
+  new Intl.DateTimeFormat('uk-UA', { timeZone: 'Europe/Kyiv', dateStyle: 'medium', timeStyle: 'short', hourCycle: 'h23' }).format(new Date());
 
 async function handleContact(request: Request, env: Env): Promise<Response> {
   if (request.method !== 'POST') return fail('method_not_allowed', 405, { allow: 'POST' });
@@ -103,14 +103,14 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   }
 
   const text = [
-    `Новая заявка с сайта (${lang.toUpperCase()})`,
-    `Имя: ${name}`,
+    `Нова заявка з сайту (${lang.toUpperCase()})`,
+    `Ім’я: ${name}`,
     `Email: ${email}`,
     `Instagram: ${instagram}`,
-    `Нужно: ${need}`,
+    `Потрібно: ${need}`,
     `Фото: ${count || '—'}`,
-    `Сообщение: ${message || '—'}`,
-    `Время (Киев): ${kyivTime()}`,
+    `Повідомлення: ${message || '—'}`,
+    `Час (Київ): ${kyivTime()}`,
   ].join('\n');
 
   const base = (env.TELEGRAM_API_BASE || 'https://api.telegram.org').replace(/\/$/, '');

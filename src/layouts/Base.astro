@@ -14,6 +14,7 @@ const url = (l: string) => new URL(twins[l as 'en' | 'uk'], Astro.site).href;
 <html lang={ui.lang}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MC4GJ834');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={ui.meta.description} />
     <title>{ui.meta.title}</title>
@@ -39,6 +40,7 @@ const url = (l: string) => new URL(twins[l as 'en' | 'uk'], Astro.site).href;
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC4GJ834" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <slot />
   </body>
 </html>
