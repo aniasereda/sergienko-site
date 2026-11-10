@@ -166,27 +166,22 @@ collections:
         format: json
         file: src/content/en/booking.json
         fields:
-          - label: Subtitle (sticker on the banner)
+          - label: Subtitle (under the banner title)
             name: subtitle
             widget: string
           - label: Three steps
             name: steps
             widget: list
-            field:
-              label: Item
-              name: item
-              widget: string
             min: 3
             max: 3
-          - label: Label above the example
-            name: exampleLabel
-            widget: string
-          - label: Example (speech bubble)
-            name: example
-            widget: text
-          - label: Result (next to the example)
-            name: result
-            widget: text
+            summary: "{{fields.title}}"
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: text
+                widget: text
           - label: “Important” block
             name: important
             widget: object
@@ -197,13 +192,10 @@ collections:
               - label: Text
                 name: text
                 widget: text
-              - label: Warning (dark banner)
+              - label: Warning
                 name: warning
                 widget: text
-              - label: Closing text
-                name: closing
-                widget: text
-              - label: Call to action
+              - label: Call to action (the word “Direct” / “DM” becomes a link to Instagram)
                 name: cta
                 widget: string
       - name: steps
@@ -598,27 +590,22 @@ collections:
         format: json
         file: src/content/uk/booking.json
         fields:
-          - label: Subtitle (sticker on the banner)
+          - label: Subtitle (under the banner title)
             name: subtitle
             widget: string
           - label: Three steps
             name: steps
             widget: list
-            field:
-              label: Item
-              name: item
-              widget: string
             min: 3
             max: 3
-          - label: Label above the example
-            name: exampleLabel
-            widget: string
-          - label: Example (speech bubble)
-            name: example
-            widget: text
-          - label: Result (next to the example)
-            name: result
-            widget: text
+            summary: "{{fields.title}}"
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: text
+                widget: text
           - label: “Important” block
             name: important
             widget: object
@@ -629,13 +616,10 @@ collections:
               - label: Text
                 name: text
                 widget: text
-              - label: Warning (dark banner)
+              - label: Warning
                 name: warning
                 widget: text
-              - label: Closing text
-                name: closing
-                widget: text
-              - label: Call to action
+              - label: Call to action (the word “Direct” / “DM” becomes a link to Instagram)
                 name: cta
                 widget: string
       - name: steps

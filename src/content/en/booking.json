@@ -1,18 +1,15 @@
 {
+  "_needsReview": true,
   "subtitle": "It’s super simple",
   "steps": [
-    "You plan your shoots",
-    "You allow time for culling",
-    "You tell me the dates you’ll send your materials"
+    { "title": "Plan your shoots", "text": "Allow time for culling your photos." },
+    { "title": "Send me your dates", "text": "For example: “On November 10, 20 and 30, I’ll send three wedding galleries.”" },
+    { "title": "We confirm the schedule", "text": "I reserve time for editing, and you know exactly when your photos will be ready." }
   ],
-  "exampleLabel": "For example",
-  "example": "“I’ll have three galleries in November: on the 10th, 20th and 30th.”",
-  "result": "We confirm the dates, I block off time in my schedule, and you know exactly when to expect your edited photos.",
   "important": {
     "title": "Important",
     "text": "Booking means reserving my working time for your order.",
-    "warning": "If files aren’t delivered on the agreed date without prior notice, the guaranteed deadlines no longer apply. New ones depend on my current workload.",
-    "closing": "Plans change, I understand that. What matters is letting me know in advance.",
+    "warning": "If your plans change, just let me know in advance. If a gallery doesn’t arrive on the agreed date without notice, the booking is no longer valid, and the new deadlines depend on my workload.",
     "cta": "To book or place a new order, send me a DM."
   }
 }

@@ -2,13 +2,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getData } from '../i18n/utils';
-import Icon from './Icon.astro';
 const { lang } = Astro.props;
-const { ui, booking } = getData(lang);
+const { ui, site, booking } = getData(lang);
 const t = ui.sections.booking;
 const imp = booking.important;
 const hasBanner = fs.existsSync(path.join(process.cwd(), 'public/images/booking.jpg'));
-const stepIcons = ['calendar', 'clock', 'send'];
+// the word "Direct" / "DM" in the call to action links to Instagram
+const ctaParts = imp.cta.split(/(Direct|DM)/);
 ---
 <section class="section" id="booking">
   <div class="container">
@@ -16,34 +16,30 @@ const stepIcons = ['calendar', 'clock', 'send'];
       {hasBanner && <img src="/images/booking.jpg" alt="" class="banner__img" loading="lazy" />}
       <div class="banner__in">
         <h2>{t.title}</h2>
-        <p class="sticker sticker--light">{booking.subtitle}</p>
+        <p class="banner__sub">{booking.subtitle}</p>
       </div>
     </div>
 
-    <ol class="flow">
+    <ol class="steps3">
       {booking.steps.map((s, i) => (
-        <li class="flow__step">
-          <span class="badge"><Icon name={stepIcons[i]} /><i class="badge__n">{i + 1}</i></span>
-          <span>{s}</span>
-          {i < booking.steps.length - 1 && <span class="flow__arrow badge badge--sm"><Icon name="arrow-right" /></span>}
+        <li class="steps3__item">
+          <span class="steps3__n" aria-hidden="true">{i + 1}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
         </li>
       ))}
     </ol>
 
-    <div class="booking__row">
-      <div>
-        <p class="mini">{booking.exampleLabel}</p>
-        <p class="bubble">{booking.example}</p>
-      </div>
-      <p class="result"><span class="badge badge--sm"><Icon name="arrow-right" /></span><span>{booking.result}</span></p>
-    </div>
-
-    <div class="card important">
+    <div class="important">
       <h3>{imp.title}</h3>
       <p>{imp.text}</p>
-      <p class="warning"><span class="badge badge--sm badge--alert"><Icon name="alert" /></span><span>{imp.warning}</span></p>
-      <p>{imp.closing}</p>
-      <p class="important__cta"><span class="badge"><Icon name="calendar" /></span><strong>{imp.cta}</strong></p>
+      <p class="important__warn">{imp.warning}</p>
+      <p class="important__cta">
+        {ctaParts.map((part, i) =>
+          i % 2 === 1
+            ? <a href={site.social.instagram} target="_blank" rel="noopener">{part}</a>
+            : part)}
+      </p>
     </div>
   </div>
 </section>

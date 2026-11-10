@@ -46,7 +46,6 @@ mark { hyphens: none; background: none; color: var(--mocha); padding: 0; }
 .section { padding: 44px 0; }
 .dark { background: var(--charcoal); color: var(--ivory); }
 #terms, #start { background: var(--sand); }
-.dark .mini { color: var(--on-dark-muted); }
 
 .grid { display: grid; gap: 24px; }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
@@ -151,7 +150,6 @@ html:has(dialog[open]) { overflow: hidden; }
 .price-list--no li::before { background: var(--text-muted); -webkit-mask-image: var(--cross-icon); mask-image: var(--cross-icon); }
 .fine { margin-top: 32px; font-size: 13px; line-height: 1.6; color: var(--text-muted); max-width: 760px; }
 .fine p { margin: 0 0 6px; }
-.mini { font-size: 14px; color: var(--text-muted); margin: 0 0 12px; }
 
 /* terms */
 .frame { padding: 0; }
@@ -169,7 +167,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .terms-card--hl .terms-time { color: var(--mocha); }
 .notes { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 14px; }
 .notes li { display: flex; align-items: center; gap: 14px; }
-.alert, .warning { display: flex; align-items: center; gap: 14px; padding: 16px 24px; border-radius: 12px; background: var(--charcoal); color: var(--ivory); font-weight: 600; }
+.alert { display: flex; align-items: center; gap: 14px; padding: 16px 24px; border-radius: 12px; background: var(--charcoal); color: var(--ivory); font-weight: 600; }
 .alert { margin: 24px 0 0; }
 
 /* booking */
@@ -178,26 +176,20 @@ html:has(dialog[open]) { overflow: hidden; }
 .banner:not(.banner--ph)::before { content: ''; position: absolute; inset: 0; background: color-mix(in srgb, var(--charcoal) 55%, transparent); }
 .banner--ph { background: var(--sand); color: var(--charcoal); }
 .banner.banner--ph h2 { color: var(--charcoal); }
-.banner.banner--ph .sticker { color: var(--mocha-deep); }
 .banner__in { position: relative; padding: 40px 24px; }
 .banner h2 { color: var(--ivory); font-size: 62px; margin-bottom: 18px; }
-.banner .sticker { margin: 0; color: var(--ivory); }
-.banner .sticker::after { margin-inline: auto; }
-.flow { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.flow__step { position: relative; display: flex; align-items: center; gap: 16px; min-height: 96px; padding: 20px 24px; background: var(--sand); color: var(--charcoal); border-radius: 12px; font-weight: 500; }
-.flow__arrow { position: absolute; right: -36px; top: 50%; transform: translateY(-50%); z-index: 1; }
-.result .badge { background: var(--charcoal); color: var(--ivory); }
-.flow__step .badge, .important .badge:not(.badge--alert) { background: var(--card); }
-.flow__arrow.badge { background: var(--charcoal); color: var(--ivory); }
-.booking__row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; margin-top: 40px; }
-.bubble { position: relative; display: inline-block; margin: 0 0 14px; padding: 18px 26px; background: var(--sand); color: var(--charcoal); border-radius: 12px 12px 12px 2px; font-size: 18px; }
-.bubble::after { content: ''; position: absolute; left: 14px; bottom: -14px; border: 8px solid transparent; border-top-color: var(--sand); border-left-color: var(--sand); }
-.result { display: flex; align-items: flex-start; gap: 14px; margin: 0; font-size: 18px; }
-.important { margin-top: 48px; background: var(--sand); border-color: var(--sand); }
-.important h3 { font-family: var(--font-sans); text-transform: uppercase; font-weight: 700; font-size: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--taupe); }
-.important p { margin: 0 0 18px; max-width: 760px; }
-.warning { align-items: flex-start; }
-.important__cta { display: flex; align-items: center; gap: 14px; margin: 24px 0 0 !important; padding-top: 20px; border-top: 1px solid var(--taupe); }
+.banner__sub { margin: 0; font-size: 18px; color: var(--ivory); }
+.banner.banner--ph .banner__sub { color: var(--mocha-deep); }
+.steps3 { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.steps3__n { display: block; margin-bottom: 12px; font: 500 56px/1 var(--font-serif); font-variant-numeric: lining-nums; color: var(--mocha); }
+.steps3 h3 { margin: 0 0 12px; font-size: 28px; color: var(--charcoal); }
+.steps3 p { margin: 0; font-size: 17px; line-height: 1.6; color: var(--text-muted); }
+.important { margin-top: 56px; padding: 40px; border-radius: 12px; background: var(--sand); }
+.important h3 { margin: 0 0 16px; font-size: 34px; }
+.important p { margin: 0 0 16px; max-width: 760px; font-size: 17px; line-height: 1.6; color: var(--text-muted); }
+.important .important__warn { font-weight: 500; color: var(--charcoal); }
+.important .important__cta { margin: 24px 0 0; color: var(--charcoal); }
+.important__cta a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 /* start */
 .start { list-style: none; margin: 32px 0 0; padding: 0; max-width: 860px; display: grid; gap: 22px; }
@@ -239,7 +231,10 @@ html:has(dialog[open]) { overflow: hidden; }
   .hero__photos { grid-template-columns: repeat(3, 1fr); }
   .hero__bottom { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
   .hero__tag, .hero__dirs { text-align: center; }
-  .grid--3, .grid--2, .grid-2, .flow, .booking__row { grid-template-columns: 1fr; }
+  .grid--3, .grid--2, .grid-2 { grid-template-columns: 1fr; }
+  .steps3 { grid-template-columns: 1fr; gap: 36px; margin-top: 40px; }
+  .steps3__n { font-size: 48px; }
+  .steps3 h3 { font-size: 26px; }
   .nav, .brand, .header .btn--sm { display: none; }
   .header { padding-top: env(safe-area-inset-top, 0px); }
   .header__in { flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 8px; min-height: 56px; }
@@ -258,11 +253,9 @@ html:has(dialog[open]) { overflow: hidden; }
   .lb__next { right: 12px; }
   .banner { min-height: 240px; }
   .banner h2 { font-size: 42px; }
-  .flow { gap: 12px; }
-  .flow__step { min-height: 0; }
-  .flow__arrow { display: none; }
   .terms-time { font-size: 30px; }
-  .important h3 { font-size: 20px; }
+  .important { padding: 28px 24px; }
+  .important h3 { font-size: 28px; }
 }
 
 /* phones: smaller headings so titles stay on as few lines as possible, never broken mid-word */
