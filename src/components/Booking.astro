@@ -11,11 +11,10 @@ const ctaParts = imp.cta.split(/(Direct|DM)/);
   <div class="container">
     <p class="sticker">{t.eyebrow}</p>
     <h2 set:html={markLast(t.title)} />
-    <p class="lead">{booking.subtitle}</p>
 
     <ol class="steps3">
       {booking.steps.map((s, i) => (
-        <li class="steps3__item">
+        <li class="card steps3__item">
           <span class="steps3__n" aria-hidden="true">{i + 1}</span>
           <h3>{s.title}</h3>
           <p>{s.text}</p>
