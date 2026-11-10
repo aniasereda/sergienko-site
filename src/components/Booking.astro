@@ -1,24 +1,17 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
-import { getData } from '../i18n/utils';
+import { getData, markLast } from '../i18n/utils';
 const { lang } = Astro.props;
 const { ui, site, booking } = getData(lang);
 const t = ui.sections.booking;
 const imp = booking.important;
-const hasBanner = fs.existsSync(path.join(process.cwd(), 'public/images/booking.jpg'));
 // the word "Direct" / "DM" in the call to action links to Instagram
 const ctaParts = imp.cta.split(/(Direct|DM)/);
 ---
 <section class="section" id="booking">
   <div class="container">
-    <div class={`banner${hasBanner ? '' : ' banner--ph'}`}>
-      {hasBanner && <img src="/images/booking.jpg" alt="" class="banner__img" loading="lazy" />}
-      <div class="banner__in">
-        <h2>{t.title}</h2>
-        <p class="banner__sub">{booking.subtitle}</p>
-      </div>
-    </div>
+    <p class="sticker">{t.eyebrow}</p>
+    <h2 set:html={markLast(t.title)} />
+    <p class="lead">{booking.subtitle}</p>
 
     <ol class="steps3">
       {booking.steps.map((s, i) => (

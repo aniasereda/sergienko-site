@@ -166,7 +166,7 @@ collections:
         format: json
         file: src/content/en/booking.json
         fields:
-          - label: Subtitle (under the banner title)
+          - label: Subtitle (intro text under the section title)
             name: subtitle
             widget: string
           - label: Three steps
@@ -590,7 +590,7 @@ collections:
         format: json
         file: src/content/uk/booking.json
         fields:
-          - label: Subtitle (under the banner title)
+          - label: Subtitle (intro text under the section title)
             name: subtitle
             widget: string
           - label: Three steps
